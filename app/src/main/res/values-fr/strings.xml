@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Devine le nombre</string>
+    <string name="choose_number">Tapez un nombre</string>
+    <string name="credits">Crédits</string>
+    <string name="instructions">Devinez le nombre qui a été choisi par l\'ordinateur (entre %1$d et %2$d).</string>
+    <string name="less">C\'est moins que %1$d !</string>
+    <string name="more">C\'est plus que %1$d !</string>
+    <string name="quit">Quitter</string>
+    <string name="submit">Valider</string>
+    <string name="toast_valid_enter_number">Vous devez entrer un nombre</string>
+    <string name="toast_valid_number_value">Le nombre doit être compris entre %1$d et %2$d</string>
+    <string name="win">Félicitations, vous avez gagné !</string>
+    <plurals name="nbTry">
+        <item quantity="one">Essai : %1$d</item>
+        <item quantity="other">Essais : %1$d</item>
+    </plurals>
+    <string name="devWebSiteUrl">http://bryan.maarti.net/?lang=fr#skills</string>
+    <string name="contact">Contact</string>
+    <string name="author">Auteur</string>
+    <string name="website">Site</string>
+    <string name="aboutMe">À propos de moi</string>
+    <string name="appMainMenuTitle">DevineLe \nNombre</string>
+    <string name="contactMailObject">Contact à propose de votre application</string>
+    <string name="defautUsername">Anonyme</string>
+    <string name="easy">Facile</string>
+    <string name="hard">Difficile</string>
+    <string name="home">Accueil</string>
+    <string name="medium">Moyen</string>
+    <string name="newGame">Nouvelle partie</string>
+    <string name="playAgain">Rejouer</string>
+    <string name="scores">Scores</string>
+    <string name="thanksSupport">Si vous souhaitez me soutenir gratuitement, merci de cliquer sur une publicité :)</string>
+    <string name="victory">Victoire</string>
+    <string name="yourName">Votre nom</string>
+</resources>

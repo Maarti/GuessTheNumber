@@ -1,0 +1,28 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/LightCyan</item>
+        <item name="android:textColorHint">@color/LightCyan</item>
+        <item name="android:editTextColor">@color/LightCyan</item>
+        <item name="android:colorBackground">@color/MidnightBlue</item>
+        <item name="android:buttonStyle">@style/buttonStyle1</item>
+        <item name="android:buttonStyleSmall">@style/buttonStyleSmall1</item>
+    </style>
+
+    <style name="buttonStyle1" parent="android:Widget.Button">
+        <item name="android:background">@drawable/button_shape</item>
+        <item name="android:shadowColor">#0A0AA8</item>
+        <item name="android:textColor">@color/LightYellow</item>
+    </style>
+
+    <style name="buttonStyleSmall1" parent="android:Widget.Button.Small">
+        <item name="android:background">@drawable/round_button</item>
+        <item name="android:textColor">@color/LightCyan</item>
+    </style>
+
+</resources>

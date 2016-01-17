@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Guess The Number</string>
+
+    <!-- Menu -->
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="easy">Easy</string>
+    <string name="credits">Credits</string>
+    <string name="quit">Quit</string>
+    <string name="yourName">Your name</string>
+    <string name="defautUsername">Anonymous</string>
+    <string name="appMainMenuTitle">GuessThe \nNumber</string>
+
+    <!-- Toasts -->
+    <string name="toast_valid_number_value">Number must be between %1$d and %2$d</string>
+    <string name="toast_valid_enter_number">You must enter a number</string>
+
+    <!-- Credits -->
+    <string name="devMail" translatable="false">bryan@maarti.net</string>
+    <string name="author">Author</string>
+    <string name="contact">Contact</string>
+    <string name="devFullName" translatable="false">Bryan MARTINET</string>
+    <string name="appWebSiteUrl" translatable="false">http://android.maarti.net</string>
+    <string name="website">Site</string>
+    <string name="devWebSiteUrl">http://bryan.maarti.net/?lang=en#skills</string>
+    <string name="contactMailObject">Contact about your app</string>
+    <string name="thanksSupport">If you want to support me free, thank you to click on an ad :)</string>
+
+    <!-- Scores -->
+    <string name="scores">Scores</string>
+    <string name="previousSign" translatable="false"><![CDATA[<<]]></string>
+    <string name="nextSign" translatable="false"><![CDATA[>>]]></string>
+
+    <!-- Game -->
+    <string name="more">It\'s more than %1$d!</string>
+    <string name="less">It\'s less than %1$d!</string>
+    <string name="win">Congratulations, you won!</string>
+    <string name="submit">Submit</string>
+    <string name="signPlus" translatable="false">+</string>
+    <string name="signMinus" translatable="false">-</string>
+    <string name="signEqual" translatable="false">=</string>
+    <string name="signInterro" translatable="false">\?</string>
+    <string name="instructions">Guess the number (between %1$d and %2$d) that has been chosen by the computer.</string>
+    <string name="choose_number">Type a number</string>
+    <string name="aboutMe">About me</string>
+    <string name="newGame">New game</string>
+    <string name="numberIndication" translatable="false"><![CDATA[%1$d < ? < %2$d]]></string>
+    <string name="victory">Victory</string>
+    <string name="playAgain">Play again</string>
+    <string name="home">Home</string>
+   <plurals name="nbTry">
+        <item quantity="one">Try : %1$d</item>
+        <item quantity="other">Tries : %1$d</item>
+    </plurals>
+</resources>

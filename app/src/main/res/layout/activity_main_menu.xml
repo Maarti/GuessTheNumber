@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="net.maarti.guessthenumber.MainMenuActivity">
+
+    <!-- TODO remplacer le titre de l'appli par une image-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/appMainMenuTitle"
+        android:id="@+id/textViewAppTitle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:gravity="left"
+        android:shadowColor="@color/Cyan"
+        android:shadowRadius="2"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:textSize="40sp"
+        android:textColor="@color/DarkCyan"
+        android:maxLines="2"
+        android:lineSpacingExtra="-18sp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ediTextName"
+        android:layout_below="@id/textViewAppTitle"
+        android:hint="@string/yourName"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:inputType="textPersonName|textNoSuggestions"
+        android:textSize="15sp"
+        android:ems="10"
+        android:maxLength="20" />
+
+    <!-- TODO proposer les 3 difficultés dans un unique menu "New Game" -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/easy"
+        android:id="@+id/buttonEasy"
+        android:onClick="onClickNewGame"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ediTextName"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/medium"
+        android:id="@+id/buttonMedium"
+        android:layout_below="@+id/buttonEasy"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickNewGame"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hard"
+        android:id="@+id/buttonHard"
+        android:layout_below="@+id/buttonMedium"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickNewGame"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scores"
+        android:id="@+id/buttonScores"
+        android:layout_below="@+id/buttonHard"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickScores"
+        android:layout_marginBottom="10dp" />
+
+    <!-- TODO Insctructions -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/credits"
+        android:id="@+id/buttonCredits"
+        android:layout_below="@+id/buttonScores"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickCredits"
+        android:layout_marginBottom="10dp" />
+<!--TODO Supprt me : click on pub or Paypal -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quit"
+        android:id="@+id/buttonQuit"
+        android:layout_below="@+id/buttonCredits"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickQuit"
+        android:layout_marginBottom="10dp" />
+
+
+</RelativeLayout>
