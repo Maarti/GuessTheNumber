@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/User"
+        android:key="prefcat_user">
+        <EditTextPreference
+            android:key="pref_username"
+            android:title="@string/name"
+            android:summary="@string/defautUsername"
+            android:hint="@string/yourName"
+            android:defaultValue="@string/defautUsername"
+            android:dialogTitle="@string/yourName" />
+            <!--android:dialogMessage="@string/prefNameSummary"-->
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/sound"
+        android:key="prefcat_sound">
+        <CheckBoxPreference
+            android:key="pref_sound"
+            android:title="@string/sound"
+            android:summaryOn="@string/soundsAllowed"
+            android:summaryOff="@string/noSound"
+            android:defaultValue="true"/>
+        <CheckBoxPreference
+            android:key="pref_vibration"
+            android:title="Vibration"
+            android:summaryOn="@string/vibrationAllowed"
+            android:summaryOff="@string/noVibration"
+            android:defaultValue="true"
+             />
+        <!--TODO Nb max score -> Widget Number picker : http://stackoverflow.com/questions/25406447/how-to-add-number-range-in-android-preferences -->
+    </PreferenceCategory>
+
+</PreferenceScreen>

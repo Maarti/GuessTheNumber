@@ -28,7 +28,8 @@
             android:src="@drawable/settings"
             android:background="@drawable/button_background_settings"
             android:textSize="25sp"
-            android:contentDescription="@string/Settings" />
+            android:contentDescription="@string/Settings"
+            android:onClick="onClickSettings"/>
     </LinearLayout>
 
     <RelativeLayout

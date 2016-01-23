@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#D2CEB1</color>
     <color name="colorPrimaryDark">#c9c5aa</color>
-    <color name="colorAccent">#F6AE74</color>
+    <color name="colorAccent">#9e4702</color>
 
     <!-- couleurs inspirées de http://www.makeuseof.com/tag/make-uniquely-gorgeous-android-home-screen/ -->
     <color name="instructionsBackground">#F6AE74</color>
@@ -24,15 +24,21 @@
     <color name="rateBackground">#C32D2F</color>
     <color name="rateBackgroundGradient">#af2628</color>
 
+    <color name="settingsActivityBackground">#ffe088</color>
+
+    <color name="buttonEasyBackground">#b8d6b3</color>
+    <color name="buttonMediumBackground">#9FCD97</color>
+    <color name="buttonHardBackground">#8dbe84</color>
+
     <color name="buttonBackground">#05224F</color>
     <color name="buttonBorder">#083882</color>
     <color name="buttonPressedBorder">#5179b7</color>
 
-    <color name="easyBackground">#5179b7</color>
+    <color name="easyBackground">#b8d6b3</color>
     <color name="easyBackgroundClicked">#7AA2E0</color>
-    <color name="mediumBackground">#083882</color>
+    <color name="mediumBackground">#9FCD97</color>
     <color name="mediumBackgroundClicked">#3F6FB9</color>
-    <color name="hardBackground">#05224F</color>
+    <color name="hardBackground">#8dbe84</color>
     <color name="hardBackgroundClicked">#284572</color>
 
     <color name="adBannerBackground">#1d2871</color>

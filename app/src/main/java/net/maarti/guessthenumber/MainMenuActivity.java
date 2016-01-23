@@ -18,7 +18,8 @@ import net.maarti.guessthenumber.game.Difficulty;
 
 public class MainMenuActivity extends AppCompatActivity {
 
-    public static final String USERNAME_LABEL = "username";
+    //public static final String USERNAME_LABEL = "username";
+    public static final String USERNAME_LABEL = "pref_username";
     private EditText wName = null;
 
     @Override
@@ -108,6 +109,12 @@ public class MainMenuActivity extends AppCompatActivity {
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.shareSubject));
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.shareText));
+        Toast.makeText(MainMenuActivity.this, R.string.toast_share_app, Toast.LENGTH_LONG).show();
         startActivity(Intent.createChooser(sharingIntent, getString(R.string.shareVia)));
+    }
+
+    public void onClickSettings(View view) {
+        Intent intent = new Intent(MainMenuActivity.this,SettingsActivity.class);
+        startActivity(intent);
     }
 }

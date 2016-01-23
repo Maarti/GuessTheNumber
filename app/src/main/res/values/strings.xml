@@ -62,8 +62,20 @@
     <string name="shareSubject">Try this app! :)</string>
     <string name="shareText">Try this Android app! :)\nGuess The Number\n\nhttp://play.google.com/store/apps/details?id=net.maarti.guessthenumber</string>
     <string name="shareVia">Share via</string>
+    <string name="toast_share_app">Thank you to share this app :)</string>
     <plurals name="nbTry">
         <item quantity="one">Try : %1$d</item>
         <item quantity="other">Tries : %1$d</item>
     </plurals>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sound">Sound</string>
+    <string name="soundsAllowed">Sounds allowed</string>
+    <string name="noSound">No sound</string>
+    <string name="vibrationAllowed">Vibration allowed</string>
+    <string name="noVibration">No vibration</string>
+    <string name="User">User</string>
+    <string name="name">Name</string>
+    <string name="prefNameSummary">Used in scores</string>
 </resources>
