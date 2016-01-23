@@ -4,11 +4,17 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="net.maarti.guessthenumber.CreditActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
 
     <TextView
         android:layout_width="wrap_content"
@@ -90,12 +96,13 @@
         android:layout_centerHorizontal="true"
         android:minHeight="250dp"/>-->
 
+        </RelativeLayout>
     <com.google.android.gms.ads.AdView
         android:id="@+id/bannerCredit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
+        ads:adSize="SMART_BANNER"
         ads:adUnitId="ca-app-pub-4442511984442196/4629254064"
         android:background="@color/adBannerBackground"/>
 
@@ -104,6 +111,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:textAppearanceSmall"
         android:layout_above="@id/bannerCredit"
-        android:text="@string/thanksSupport"/>
+        android:text="@string/thanksSupport"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"/>
 
 </RelativeLayout>

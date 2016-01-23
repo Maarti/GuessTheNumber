@@ -12,7 +12,6 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -51,22 +50,12 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Timer
-        // Difficultés (creer Class Difficulty)
-        //TODO tableau des scores
-        // Menu principal
-        // rangeseekbar
-        // Pub
-        // popup victoire
-        // Graphisme seekbar
-        // Style de l'appli
-        // remove title bar
-        // Saisi nom du joueur
+        // TODO Timer affiché dans l'écran de victoire
+        // TODO tableau des scores
+        // TODO Pub interstielle
         // TODO Keyboard view
         super.onCreate(savedInstanceState);
         Log.i(TAG, "onCreate");
-
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // Recup la difficulté dans les préférences sauvegardées
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -103,7 +92,7 @@ public class GameActivity extends AppCompatActivity {
 
         private void initGame(){
             game = new Game(difficulty);
-          //  Log.d(TAG, "Nombre à trouver : " + game.getNumberToGuess());
+            Log.d(TAG, "Nombre à trouver : " + game.getNumberToGuess());
 
             // Affichage des view qui ont été masquées en cas de victoire
             wNumber.setVisibility(View.VISIBLE);
@@ -149,16 +138,6 @@ public class GameActivity extends AppCompatActivity {
 
 
     /**
-     * Ajoute le menu en haut à droite
-     */
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }*/
-
-    /**
      * Met à jour l'affichage de l'indicateur "0 < ? < 100"
      */
     private void updateNumberIndication(){
@@ -190,7 +169,6 @@ public class GameActivity extends AppCompatActivity {
             wChrono.stop();
             wSign.setText(R.string.signEqual);
             wIndication.setText(R.string.win);
-            //Toast.makeText(GameActivity.this, R.string.toast_new_game_win, Toast.LENGTH_LONG).show();
             wNumber.clearFocus();
             wNumber.setVisibility(View.INVISIBLE);
             wSubmit.setVisibility(View.INVISIBLE);
@@ -241,14 +219,6 @@ public class GameActivity extends AppCompatActivity {
         Log.i(TAG, "Range=(" + wRangeSeekBar.getAbsoluteMinValue() + "-" + wRangeSeekBar.getAbsoluteMaxValue() + ") Select=(" + wRangeSeekBar.getSelectedMinValue() + "-" + wRangeSeekBar.getSelectedMaxValue() + ") Near=(" + game.getNearestMin() + "-" + game.getNearestMax() + ")");
     }
 
-    /*public void quit(MenuItem item) {
-        Log.i(TAG,"quit");
-        this.finish();
-        System.exit(0);
-    }*/
-
-
-
     private void shake(int viewId){
         Animation shake = AnimationUtils.loadAnimation(this,R.anim.shake);
         findViewById(viewId).setAnimation(shake);
@@ -263,15 +233,5 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    /*public void onClickCredits(MenuItem item) {
-        Intent intent = new Intent(GameActivity.this,CreditActivity.class);
-        startActivity(intent);
-    }*/
-
-
-
-    public void newGame(MenuItem item) {
-        initGame();
-    }
 
 }
