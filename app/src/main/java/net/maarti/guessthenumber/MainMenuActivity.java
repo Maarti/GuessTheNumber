@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import net.maarti.guessthenumber.game.Difficulty;
@@ -20,12 +21,15 @@ public class MainMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
-        wName = (EditText) findViewById(R.id.ediTextName);
+        setContentView(R.layout.activity_main_menu_v02);
+        //wName = (EditText) findViewById(R.id.ediTextName);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        /*SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String username = preferences.getString(MainMenuActivity.USERNAME_LABEL,"");
-        wName.setText(username);
+        wName.setText(username);*/
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     public void onClickNewGame(View view) {
@@ -39,7 +43,7 @@ public class MainMenuActivity extends AppCompatActivity {
         editor.apply();
 
         // On stock le username
-        saveUsername();
+        //saveUsername();
 
         // On lance la GameActivity
         Intent intent = new Intent(MainMenuActivity.this,GameActivity.class);
