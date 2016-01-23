@@ -32,21 +32,25 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:noHistory="true"
             android:screenOrientation="portrait"
-            android:theme="@style/GameTheme"/>
+            android:theme="@style/GameTheme" />
         <activity
             android:name=".CreditActivity"
-            android:theme="@style/CreditTheme"/>
+            android:theme="@style/CreditTheme" />
         <activity
             android:name=".ScoreActivity"
-            android:theme="@style/ScoreTheme"/>
+            android:theme="@style/ScoreTheme" />
 
         <!-- Activité utilisée par GoogleAdMob à l’affichage des interstitiels ou lors d'un clic sur bannière -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name=".SettingsActivity"
+        <activity
+            android:name=".SettingsActivity"
             android:theme="@style/SettingsTheme" />
+        <activity
+            android:name=".InstructionActivity"
+            android:theme="@style/InstructionTheme"></activity>
     </application>
 
 </manifest>

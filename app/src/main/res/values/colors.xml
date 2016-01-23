@@ -25,6 +25,7 @@
     <color name="rateBackgroundGradient">#af2628</color>
 
     <color name="settingsActivityBackground">#ffe088</color>
+    <color name="instructionActivityBackground">#fac499</color>
     <color name="scoreActivityBackground">#c0f7f3</color>
     <color name="creditActivityBackground">#ba9db4</color>
     <color name="buttonEasyBackground">#b8d6b3</color>

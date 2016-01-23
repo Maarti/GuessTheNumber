@@ -26,6 +26,12 @@
         <item name="colorAccent">#114208</item>
     </style>
 
+    <!-- Instruction theme. -->
+    <style name="InstructionTheme" parent="AppTheme">
+        <item name="android:colorBackground">@color/instructionActivityBackground</item>
+        <item name="android:windowBackground">@color/instructionActivityBackground</item>
+    </style>
+
     <!-- Score theme. -->
     <style name="ScoreTheme" parent="AppTheme">
         <item name="android:colorBackground">@color/scoreActivityBackground</item>

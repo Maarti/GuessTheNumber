@@ -117,4 +117,9 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(MainMenuActivity.this,SettingsActivity.class);
         startActivity(intent);
     }
+
+    public void onClickInstruction(View view) {
+        Intent intent = new Intent(MainMenuActivity.this,InstructionActivity.class);
+        startActivity(intent);
+    }
 }

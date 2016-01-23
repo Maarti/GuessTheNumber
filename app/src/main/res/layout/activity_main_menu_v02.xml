@@ -19,7 +19,8 @@
             android:text="@string/instructions"
             android:layout_weight="40"
             android:background="@drawable/button_background_instructions"
-            android:textSize="25sp"/>
+            android:textSize="25sp"
+            android:onClick="onClickInstruction"/>
 
         <ImageButton
             style="@style/mainMenuButton"
