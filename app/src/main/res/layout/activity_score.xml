@@ -23,14 +23,14 @@
         android:id="@+id/linear3">
 
         <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/smallRoundButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:text="@string/previousSign"
             android:id="@+id/buttonLeft"
             android:gravity="center"
             android:layout_alignParentLeft="true"
-            android:textSize="28sp"/>
+            android:textSize="22sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,14 +40,14 @@
             android:textAppearance="?android:attr/textAppearanceLarge"/>
 
         <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/smallRoundButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:text="@string/nextSign"
             android:id="@+id/buttonRight"
             android:gravity="center"
             android:layout_alignParentRight="true"
-            android:textSize="28sp"/>
+            android:textSize="22sp"/>
 
     </RelativeLayout>
 
@@ -67,7 +67,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/easy"
                 android:id="@+id/textViewScoreLevel10"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:layout_marginBottom="15dp"/>
 
             <ListView
                 android:layout_width="match_parent"
@@ -85,7 +86,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/medium"
                 android:id="@+id/textViewScoreLevel20"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:layout_marginBottom="15dp"/>
 
             <ListView
                 android:layout_width="match_parent"
@@ -104,7 +106,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/hard"
                 android:id="@+id/textViewScoreLevel30"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:layout_marginBottom="15dp"/>
 
             <ListView
                 android:layout_width="match_parent"
@@ -124,7 +127,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-4442511984442196/4629254064"
-        android:background="@color/adBannerBackground"/>
+        ads:adUnitId="ca-app-pub-4442511984442196/4629254064"/>
 
 </RelativeLayout>

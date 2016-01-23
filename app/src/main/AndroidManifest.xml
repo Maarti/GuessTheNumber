@@ -31,9 +31,14 @@
             android:name=".GameActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:noHistory="true"
-            android:screenOrientation="portrait" />
-        <activity android:name=".CreditActivity" />
-        <activity android:name=".ScoreActivity" />
+            android:screenOrientation="portrait"
+            android:theme="@style/GameTheme"/>
+        <activity
+            android:name=".CreditActivity"
+            android:theme="@style/CreditTheme"/>
+        <activity
+            android:name=".ScoreActivity"
+            android:theme="@style/ScoreTheme"/>
 
         <!-- Activité utilisée par GoogleAdMob à l’affichage des interstitiels ou lors d'un clic sur bannière -->
         <activity

@@ -68,8 +68,8 @@
         <item quantity="other">Tries : %1$d</item>
     </plurals>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Settings -->
     <string name="sound">Sound</string>
     <string name="soundsAllowed">Sounds allowed</string>
     <string name="noSound">No sound</string>
@@ -77,5 +77,4 @@
     <string name="noVibration">No vibration</string>
     <string name="User">User</string>
     <string name="name">Name</string>
-    <string name="prefNameSummary">Used in scores</string>
 </resources>

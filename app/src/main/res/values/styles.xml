@@ -13,20 +13,32 @@
         <item name="android:colorBackground">@color/titleBackground</item>
     </style>
 
-    <!-- Base application theme. -->
+    <!-- Settings theme. -->
     <style name="SettingsTheme" parent="AppTheme">
         <item name="android:colorBackground">@color/settingsActivityBackground</item>
         <item name="android:windowBackground">@color/settingsActivityBackground</item>
-        <item name="android:divider">@color/colorAccent</item>
     </style>
 
-    <style name="buttonStyle1" parent="android:Widget.Button">
-        <item name="android:background">@drawable/button_shape</item>
-        <item name="android:shadowColor">#0A0AA8</item>
-        <item name="android:textColor">@color/LightYellow</item>
+    <!-- Game theme. -->
+    <style name="GameTheme" parent="AppTheme">
+        <item name="android:colorBackground">@color/gameBackground</item>
+        <item name="android:windowBackground">@color/gameBackground</item>
+        <item name="colorAccent">#114208</item>
     </style>
 
-    <style name="buttonStyleSmall1" parent="android:Widget.Button.Small">
+    <!-- Score theme. -->
+    <style name="ScoreTheme" parent="AppTheme">
+        <item name="android:colorBackground">@color/scoreActivityBackground</item>
+        <item name="android:windowBackground">@color/scoreActivityBackground</item>
+    </style>
+
+    <!-- Credits theme. -->
+    <style name="CreditTheme" parent="AppTheme">
+        <item name="android:colorBackground">@color/creditActivityBackground</item>
+        <item name="android:windowBackground">@color/creditActivityBackground</item>
+    </style>
+
+    <style name="smallRoundButton" >
         <item name="android:background">@drawable/round_button</item>
         <item name="android:textColor">@color/LightCyan</item>
     </style>

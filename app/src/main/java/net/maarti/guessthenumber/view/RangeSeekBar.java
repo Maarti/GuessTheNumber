@@ -51,7 +51,7 @@ public class RangeSeekBar<T extends Number> extends ImageView {
     /**
      * Default color of a {@link RangeSeekBar}, #FF33B5E5. This is also known as "Ice Cream Sandwich" blue.
      */
-    public static final int DEFAULT_COLOR = Color.argb(0xFF, 0x33, 0xB5, 0xE5);
+    public static final int DEFAULT_COLOR = Color.argb(0xFF, 79, 128, 70);
 
     /**
      * An invalid pointer id.
@@ -301,7 +301,6 @@ public class RangeSeekBar<T extends Number> extends ImageView {
         if (pointerId == mActivePointerId) {
             // This was our active pointer going up. Choose
             // a new active pointer and adjust accordingly.
-            // TODO: Make this decision more intelligent.
             final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
             mDownMotionX = ev.getX(newPointerIndex);
             mActivePointerId = ev.getPointerId(newPointerIndex);

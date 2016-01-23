@@ -103,8 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-4442511984442196/4629254064"
-        android:background="@color/adBannerBackground"/>
+        ads:adUnitId="ca-app-pub-4442511984442196/4629254064"/>
 
     <TextView
         android:layout_width="wrap_content"
