@@ -81,9 +81,9 @@
     <!-- Instruction -->
     <string name="instruction_rangeNumbers"><u>Ranges of numbers depending on the difficulty:</u></string>
     <string name="instruction_details">The system choose a random number. You must guess it by suggesting numbers and the system will tell you if the correct response is higher or lower.</string>
-    <string name="instruction_rangeEasy">1 – 100</string>
-    <string name="instruction_rangeMedium">1 – 1 000</string>
-    <string name="instruction_rangeHard">1 – 10 000</string>
+    <string name="instruction_rangeEasy" translatable="false">1 – 100</string>
+    <string name="instruction_rangeMedium" translatable="false">1 – 1 000</string>
+    <string name="instruction_rangeHard" translatable="false">1 – 10 000</string>
     <string name="instruction_detail2">You have to guess the correct number as fast as possible and with the least possible attempts to acces the scoreboard!</string>
     <string name="instruction_username">You can change your username in the settings.\n\nHave fun!</string>
 </resources>
