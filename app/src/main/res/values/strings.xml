@@ -58,6 +58,10 @@
     <string name="share">Share</string>
     <string name="Settings">Settings</string>
     <string name="versionNumber">Version 1.2.0</string>
+    <string name="toats_rate_app">Thank you to rate this app :)</string>
+    <string name="shareSubject">Try this app! :)</string>
+    <string name="shareText">Try this Android app! :)\nGuess The Number\n\nhttp://play.google.com/store/apps/details?id=net.maarti.guessthenumber</string>
+    <string name="shareVia">Share via</string>
     <plurals name="nbTry">
         <item quantity="one">Try : %1$d</item>
         <item quantity="other">Tries : %1$d</item>

@@ -1,8 +1,10 @@
 package net.maarti.guessthenumber;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import net.maarti.guessthenumber.game.Difficulty;
 
@@ -81,5 +84,30 @@ public class MainMenuActivity extends AppCompatActivity {
         builder.setView(inflater.inflate(R.layout.quick_game_alert, null));
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public void onClickRate(View view) {
+        Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        // To count with Play market backstack, After pressing back button,
+        // to taken back to our application, we need to add following flags to intent.
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        Toast.makeText(MainMenuActivity.this, R.string.toats_rate_app, Toast.LENGTH_LONG).show();
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName())));
+        }
+    }
+
+    public void onClickShare(View view) {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.shareSubject));
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.shareText));
+        startActivity(Intent.createChooser(sharingIntent, getString(R.string.shareVia)));
     }
 }
