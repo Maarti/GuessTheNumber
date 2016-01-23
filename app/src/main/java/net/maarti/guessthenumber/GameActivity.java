@@ -174,7 +174,7 @@ public class GameActivity extends AppCompatActivity {
             wSubmit.setVisibility(View.INVISIBLE);
             wNumberIndication.setText(String.format("%d", game.getNumberToGuess()));
 
-            // Récupération du pseudo du jour
+            // Récupération du pseudo du joueur
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             String username = preferences.getString(MainMenuActivity.USERNAME_LABEL, getString(R.string.defautUsername));
             if (username.equals("")) {

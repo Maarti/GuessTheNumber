@@ -3,7 +3,7 @@
     <string name="app_name">Devine le nombre</string>
     <string name="choose_number">Tapez un nombre</string>
     <string name="credits">Crédits</string>
-    <string name="instructions">Devinez le nombre qui a été choisi par l\'ordinateur (entre %1$d et %2$d).</string>
+    <string name="instructions">Instructions</string>
     <string name="less">C\'est moins que %1$d !</string>
     <string name="more">C\'est plus que %1$d !</string>
     <string name="quit">Quitter</string>
@@ -33,4 +33,6 @@
     <string name="thanksSupport">Si vous souhaitez me soutenir gratuitement, merci de cliquer sur une publicité :)</string>
     <string name="victory">Victoire</string>
     <string name="yourName">Votre nom</string>
+    <string name="instructions_01">Devinez le nombre qui a été choisi par l\'ordinateur (entre %1$d et %2$d).</string>
+    <string name="quickGame">Partie rapide</string>
 </resources>

@@ -42,7 +42,20 @@
         android:ems="10"
         android:maxLength="20" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quickGame"
+        android:id="@+id/buttonQuickGame"
+        android:onClick="onClickQuickGame"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ediTextName"/>
+
+
+
     <!-- TODO proposer les 3 difficultés dans un unique menu "New Game" -->
+    <!--
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,14 +84,14 @@
         android:layout_below="@+id/buttonMedium"
         android:layout_centerHorizontal="true"
         android:onClick="onClickNewGame"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp" /> -->
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/scores"
         android:id="@+id/buttonScores"
-        android:layout_below="@+id/buttonHard"
+        android:layout_below="@+id/buttonQuickGame"
         android:layout_centerHorizontal="true"
         android:onClick="onClickScores"
         android:layout_marginBottom="10dp" />
@@ -87,9 +100,19 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/instructions"
+        android:id="@+id/buttonInstructions"
+        android:layout_below="@+id/buttonScores"
+        android:layout_centerHorizontal="true"
+        android:enabled="false"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/credits"
         android:id="@+id/buttonCredits"
-        android:layout_below="@+id/buttonScores"
+        android:layout_below="@+id/buttonInstructions"
         android:layout_centerHorizontal="true"
         android:onClick="onClickCredits"
         android:layout_marginBottom="10dp" />

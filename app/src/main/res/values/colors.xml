@@ -3,9 +3,18 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
     <color name="buttonBackground">#05224F</color>
     <color name="buttonBorder">#083882</color>
     <color name="buttonPressedBorder">#5179b7</color>
+
+    <color name="easyBackground">#5179b7</color>
+    <color name="easyBackgroundClicked">#7AA2E0</color>
+    <color name="mediumBackground">#083882</color>
+    <color name="mediumBackgroundClicked">#3F6FB9</color>
+    <color name="hardBackground">#05224F</color>
+    <color name="hardBackgroundClicked">#284572</color>
+
     <color name="adBannerBackground">#1d2871</color>
 
     <color name="White">#FFFFFF</color>

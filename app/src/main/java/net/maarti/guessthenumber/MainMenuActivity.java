@@ -1,10 +1,12 @@
 package net.maarti.guessthenumber;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
@@ -67,5 +69,13 @@ public class MainMenuActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(USERNAME_LABEL, username);
         editor.apply();
+    }
+
+    public void onClickQuickGame(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.quick_game_alert, null));
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

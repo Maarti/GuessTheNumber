@@ -6,6 +6,7 @@
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
     <string name="easy">Easy</string>
+    <string name="instructions">Instructions</string>
     <string name="credits">Credits</string>
     <string name="quit">Quit</string>
     <string name="yourName">Your name</string>
@@ -15,6 +16,9 @@
     <!-- Toasts -->
     <string name="toast_valid_number_value">Number must be between %1$d and %2$d</string>
     <string name="toast_valid_enter_number">You must enter a number</string>
+
+    <!-- Insctructions -->
+    <string name="instructions_01">Guess the number (between %1$d and %2$d) that has been chosen by the computer.</string>
 
     <!-- Credits -->
     <string name="devMail" translatable="false">bryan@maarti.net</string>
@@ -41,7 +45,6 @@
     <string name="signMinus" translatable="false">-</string>
     <string name="signEqual" translatable="false">=</string>
     <string name="signInterro" translatable="false">\?</string>
-    <string name="instructions">Guess the number (between %1$d and %2$d) that has been chosen by the computer.</string>
     <string name="choose_number">Type a number</string>
     <string name="aboutMe">About me</string>
     <string name="newGame">New game</string>
@@ -49,7 +52,8 @@
     <string name="victory">Victory</string>
     <string name="playAgain">Play again</string>
     <string name="home">Home</string>
-   <plurals name="nbTry">
+    <string name="quickGame">Quick game</string>
+    <plurals name="nbTry">
         <item quantity="one">Try : %1$d</item>
         <item quantity="other">Tries : %1$d</item>
     </plurals>
