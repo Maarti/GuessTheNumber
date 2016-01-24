@@ -115,12 +115,12 @@ public class GameActivity extends AppCompatActivity {
                 public void onTextChanged(CharSequence s, int start, int before, int count) {}
                 @Override
                 public void afterTextChanged(Editable s) {
-                    // On vérifie que le nombre saisi est entre min et max.
+                    // On vérifie que le nombre saisi est inférieur au max.
                     if (!s.toString().equals(""))
                     {
                         int nbSaisi = Integer.parseInt(s.toString());
-                        if (nbSaisi<game.getMin() || nbSaisi>game.getMax()){
-                            Toast.makeText(GameActivity.this, getResources().getString(R.string.toast_valid_number_value, game.getMin(), game.getMax()), Toast.LENGTH_SHORT).show();
+                        if (nbSaisi>game.getMax()){
+                            Toast.makeText(GameActivity.this, getResources().getString(R.string.toast_valid_number_value, game.getMin()+1, game.getMax()), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -154,7 +154,7 @@ public class GameActivity extends AppCompatActivity {
     private void submitNumber(int nbSaisi) {
         // Valeur incorrecte
         if (nbSaisi < 1 || nbSaisi > game.getMax()) {
-            Toast.makeText(GameActivity.this, getResources().getString(R.string.toast_valid_number_value,game.getMin(),game.getMax()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(GameActivity.this, getResources().getString(R.string.toast_valid_number_value,game.getMin()+1,game.getMax()), Toast.LENGTH_SHORT).show();
 
         // Nombre non-gagnant
         } else if(!game.submitNumber(nbSaisi)) {
