@@ -1,5 +1,6 @@
 package net.maarti.guessthenumber;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.google.android.gms.ads.AdView;
 import net.maarti.guessthenumber.model.DatabaseHandler;
 import net.maarti.guessthenumber.model.Score;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +30,8 @@ public class ScoreActivity extends AppCompatActivity {
     private Button vButtonRight;
     private Button vButtonLeft;
     private final int SCORE_COUNT = 20;
+    private MediaPlayer mpClic1;
+    private MediaPlayer mpClic2;
 
     DatabaseHandler db = new DatabaseHandler(this);
     private float lastX;
@@ -44,6 +48,8 @@ public class ScoreActivity extends AppCompatActivity {
         vButtonRight = (Button) findViewById(R.id.buttonRight);
         vButtonLeft = (Button) findViewById(R.id.buttonLeft);
         AdView wBanner = (AdView) findViewById(R.id.bannerScore);
+        mpClic1 = MediaPlayer.create(getApplicationContext(),R.raw.clic);
+        mpClic2 = MediaPlayer.create(getApplicationContext(),R.raw.clic);
 
         // Remplissage des listes des scores
         List<Score> listScores10 = db.getTopScores(10,SCORE_COUNT);
@@ -105,6 +111,12 @@ public class ScoreActivity extends AppCompatActivity {
                 vFlipper.setInAnimation(ScoreActivity.this, R.anim.slide_in_from_right);
                 vFlipper.setOutAnimation(ScoreActivity.this, R.anim.slide_out_to_left);
                 vFlipper.showNext();
+
+                // On joue le son du clic
+                if(mpClic1.isPlaying())
+                    mpClic2.start();
+                else
+                    mpClic1.start();
             }
         });
 
@@ -114,6 +126,12 @@ public class ScoreActivity extends AppCompatActivity {
                 vFlipper.setInAnimation(ScoreActivity.this, R.anim.slide_in_from_left);
                 vFlipper.setOutAnimation(ScoreActivity.this, R.anim.slide_out_to_right);
                 vFlipper.showPrevious();
+
+                // On joue le son du clic
+                if(mpClic1.isPlaying())
+                    mpClic2.start();
+                else
+                    mpClic1.start();
             }
         });
 

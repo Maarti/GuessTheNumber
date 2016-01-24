@@ -4,13 +4,13 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,19 +21,21 @@ public class MainMenuActivity extends AppCompatActivity {
     //public static final String USERNAME_LABEL = "username";
     public static final String USERNAME_LABEL = "pref_username";
     private EditText wName = null;
+    private MediaPlayer mpClic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu_v02);
+        mpClic = MediaPlayer.create(getApplicationContext(),R.raw.clic);
         //wName = (EditText) findViewById(R.id.ediTextName);
 
         /*SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String username = preferences.getString(MainMenuActivity.USERNAME_LABEL,"");
         wName.setText(username);*/
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    /*    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
     }
 
     public void onClickNewGame(View view) {
@@ -49,22 +51,34 @@ public class MainMenuActivity extends AppCompatActivity {
         // On stock le username
         //saveUsername();
 
+        // On joue le son du clic
+        mpClic.start();
+
         // On lance la GameActivity
         Intent intent = new Intent(MainMenuActivity.this,GameActivity.class);
         startActivity(intent);
     }
 
     public void onClickScores(View view) {
+        // On joue le son du clic
+        mpClic.start();
+
         Intent intent = new Intent(MainMenuActivity.this,ScoreActivity.class);
         startActivity(intent);
     }
 
     public void onClickCredits(View view) {
+        // On joue le son du clic
+        mpClic.start();
+
         Intent intent = new Intent(MainMenuActivity.this,CreditActivity.class);
         startActivity(intent);
     }
 
     public void onClickQuit(View view) {
+        // On joue le son du clic
+        mpClic.start();
+
         this.finish();
         System.exit(0);
     }
@@ -85,9 +99,15 @@ public class MainMenuActivity extends AppCompatActivity {
         builder.setView(inflater.inflate(R.layout.quick_game_alert, null));
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+
+        // On joue le son du clic
+        mpClic.start();
     }
 
     public void onClickRate(View view) {
+        // On joue le son du clic
+        mpClic.start();
+
         Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
         // To count with Play market backstack, After pressing back button,
@@ -105,6 +125,9 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void onClickShare(View view) {
+        // On joue le son du clic
+        mpClic.start();
+
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.shareSubject));
@@ -114,11 +137,17 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void onClickSettings(View view) {
+        // On joue le son du clic
+        mpClic.start();
+
         Intent intent = new Intent(MainMenuActivity.this,SettingsActivity.class);
         startActivity(intent);
     }
 
     public void onClickInstruction(View view) {
+        // On joue le son du clic
+        mpClic.start();
+
         Intent intent = new Intent(MainMenuActivity.this,InstructionActivity.class);
         startActivity(intent);
     }

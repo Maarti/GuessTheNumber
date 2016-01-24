@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +45,7 @@ public class GameActivity extends AppCompatActivity {
     Chronometer wChrono = null;
     RangeSeekBar<Integer> wRangeSeekBar = null;
     DatabaseHandler db = new DatabaseHandler(this);
+    private MediaPlayer mpSubmitNumber1, mpSubmitNumber2, mpWin;
 
     Game game;
     int difficulty;
@@ -83,11 +85,16 @@ public class GameActivity extends AppCompatActivity {
         ViewGroup linear2 = (ViewGroup) findViewById(R.id.linear2);
         linear2.addView(wRangeSeekBar);
 
-        // Chargement de la bannière pub
-        wBanner.loadAd(new AdRequest.Builder().build());
-
         // Init le jeu
         initGame();
+
+        // Chargement des sons
+        mpSubmitNumber1 = MediaPlayer.create(getApplicationContext(), R.raw.submitnumber01);
+        mpSubmitNumber2 = MediaPlayer.create(getApplicationContext(), R.raw.submitnumber01);
+        mpWin = MediaPlayer.create(getApplicationContext(), R.raw.win02);
+
+        // Chargement de la bannière pub
+        wBanner.loadAd(new AdRequest.Builder().build());
     }
 
         private void initGame(){
@@ -163,6 +170,10 @@ public class GameActivity extends AppCompatActivity {
             wRangeSeekBar.setSelectedMinValue(game.getNearestMin());
             wRangeSeekBar.setSelectedMaxValue(game.getNearestMax());
             updateNumberIndication();
+            if(mpSubmitNumber1.isPlaying())
+                mpSubmitNumber2.start();
+            else
+                mpSubmitNumber1.start();
 
         // Nombre gagnant
         }else{
@@ -213,6 +224,7 @@ public class GameActivity extends AppCompatActivity {
 
             AlertDialog a = alert.create();
             a.show();
+            mpWin.start();
         }
 
         wNbTry.setText(getResources().getQuantityString((R.plurals.nbTry), game.getNbStep(), game.getNbStep()));
