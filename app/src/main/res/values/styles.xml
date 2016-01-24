@@ -21,8 +21,8 @@
 
     <!-- Game theme. -->
     <style name="GameTheme" parent="AppTheme">
-        <item name="android:colorBackground">@color/gameBackground</item>
-        <item name="android:windowBackground">@color/gameBackground</item>
+        <item name="android:colorBackground">@color/gameActivityBackground</item>
+        <item name="android:windowBackground">@color/gameActivityBackground</item>
         <item name="colorAccent">#114208</item>
     </style>
 

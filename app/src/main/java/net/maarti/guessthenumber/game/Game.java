@@ -8,9 +8,8 @@ import java.util.Random;
  */
 public class Game {
 
-    private int numberToGuess, max, nbStep = 0, nearestMin = 0, nearestMax, lastInput;
+    private int numberToGuess, max, nbStep = 0, nearestMin = 0, nearestMax;
     private final int min, difficulty;
-    private boolean gamePaused = false;
 
     public Game(int difficulty) {
         this.difficulty = difficulty;
@@ -29,7 +28,6 @@ public class Game {
      */
     public boolean submitNumber(int subNum){
         nbStep++;
-        lastInput = subNum;
         if (subNum<numberToGuess){
             nearestMin = (subNum > nearestMin) ? subNum : nearestMin;
         } else if (subNum>numberToGuess){
@@ -61,19 +59,8 @@ public class Game {
         return nearestMax;
     }
 
-    public int getLastInput() {
-        return lastInput;
-    }
 
     public int getMin() {
         return min;
-    }
-
-    public int getDifficulty() {
-        return difficulty;
-    }
-
-    public boolean isGamePaused() {
-        return gamePaused;
     }
 }

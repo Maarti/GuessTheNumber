@@ -17,45 +17,38 @@ import net.maarti.guessthenumber.model.DatabaseHandler;
 import net.maarti.guessthenumber.model.Score;
 import net.maarti.guessthenumber.utility.MultimediaManager;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class ScoreActivity extends AppCompatActivity {
 
-    private ListView vScores10;
-    private ListView vScores20;
-    private ListView vScores30;
     private ViewFlipper vFlipper;
-    private Button vButtonRight;
-    private Button vButtonLeft;
-    private final int SCORE_COUNT = 20;
     private MediaPlayer mpClic1;
     private MediaPlayer mpClic2;
 
     DatabaseHandler db = new DatabaseHandler(this);
-    private float lastX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        vScores10 = (ListView) findViewById(R.id.listViewScores10);
-        vScores20 = (ListView) findViewById(R.id.listViewScores20);
-        vScores30 = (ListView) findViewById(R.id.listViewScores30);
+        ListView vScores10 = (ListView) findViewById(R.id.listViewScores10);
+        ListView vScores20 = (ListView) findViewById(R.id.listViewScores20);
+        ListView vScores30 = (ListView) findViewById(R.id.listViewScores30);
         vFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
-        vButtonRight = (Button) findViewById(R.id.buttonRight);
-        vButtonLeft = (Button) findViewById(R.id.buttonLeft);
+        Button vButtonRight = (Button) findViewById(R.id.buttonRight);
+        Button vButtonLeft = (Button) findViewById(R.id.buttonLeft);
         AdView wBanner = (AdView) findViewById(R.id.bannerScore);
         mpClic1 = MediaPlayer.create(getApplicationContext(),R.raw.clic);
         mpClic2 = MediaPlayer.create(getApplicationContext(),R.raw.clic);
 
         // Remplissage des listes des scores
-        List<Score> listScores10 = db.getTopScores(10,SCORE_COUNT);
-        List<Score> listScores20 = db.getTopScores(20,SCORE_COUNT);
-        List<Score> listScores30 = db.getTopScores(30,SCORE_COUNT);
+        int SCORE_COUNT = 20;
+        List<Score> listScores10 = db.getTopScores(10, SCORE_COUNT);
+        List<Score> listScores20 = db.getTopScores(20, SCORE_COUNT);
+        List<Score> listScores30 = db.getTopScores(30, SCORE_COUNT);
 
         List<HashMap<String, Score>> liste10 = new ArrayList<>();
         List<HashMap<String, Score>> liste20 = new ArrayList<>();
@@ -114,7 +107,7 @@ public class ScoreActivity extends AppCompatActivity {
                 vFlipper.showNext();
 
                 // On joue le son du clic
-                if(mpClic1.isPlaying())
+                if (mpClic1.isPlaying())
                     MultimediaManager.play(getApplicationContext(), mpClic2);
                 else
                     MultimediaManager.play(getApplicationContext(), mpClic1);
@@ -129,7 +122,7 @@ public class ScoreActivity extends AppCompatActivity {
                 vFlipper.showPrevious();
 
                 // On joue le son du clic
-                if(mpClic1.isPlaying())
+                if (mpClic1.isPlaying())
                     MultimediaManager.play(getApplicationContext(), mpClic2);
                 else
                     MultimediaManager.play(getApplicationContext(), mpClic1);

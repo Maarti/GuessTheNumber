@@ -19,8 +19,7 @@
     <string name="contact">Contact</string>
     <string name="author">Auteur</string>
     <string name="website">Site</string>
-    <string name="aboutMe">À propos de moi</string>
-    <string name="appMainMenuTitle">DevineLe \nNombre</string>
+
     <string name="contactMailObject">Contact à propos de votre application</string>
     <string name="defautUsername">Anonyme</string>
     <string name="easy">Facile</string>
@@ -44,7 +43,7 @@
     <string name="name">Nom</string>
     <string name="noSound">Pas de sons</string>
     <string name="noVibration">Pas de vibrations</string>
-    <string name="preferences">Préférences</string>
+
     <string name="rate">Noter</string>
     <string name="share">Partager</string>
     <string name="shareSubject">Essais cette application ! :)</string>
@@ -56,4 +55,5 @@
     <string name="toats_rate_app">Merci de noter cette application :)</string>
     <string name="versionNumber">Version 1.2.0</string>
     <string name="vibrationAllowed">Vibrations autorisées</string>
+    <string name="toat_must_enter_name">Vous devez saisir un nom !</string>
 </resources>

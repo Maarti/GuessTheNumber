@@ -27,98 +27,98 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_below="@id/bannerGame">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linear2">
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linear1">
-
-
-        <Chronometer
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/chronometer"
-            android:layout_weight="50"
-            android:gravity="top" />
+            android:id="@+id/linear2">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linear1">
+
+
+                <Chronometer
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/chronometer"
+                    android:layout_weight="50"
+                    android:gravity="top" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:gravity="end"
+                    android:id="@+id/nbtry" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:gravity="center"
+                android:id="@+id/textViewNumberIndication" />
+
+            <!-- RangeSeekBar insérée ici en Java -->
+
+        </LinearLayout>
+
+
+        <!--<net.maarti.guessthenumber.view.RangeSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rangeSeekBar"
+            android:layout_below="@+id/linear1"
+            android:layout_centerHorizontal="true" />
+    -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/signInterro"
+            android:textSize="50sp"
+            android:id="@+id/textViewSign"
+            android:layout_below="@id/linear2"
+            android:layout_centerHorizontal="true" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textViewIndication"
+            android:layout_below="@+id/textViewSign"
+            android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:gravity="end"
-            android:id="@+id/nbtry" />
-    </LinearLayout>
+            android:layout_below="@+id/textViewIndication"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/linearLayout">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:gravity="center"
-        android:id="@+id/textViewNumberIndication" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="33"
+                android:inputType="number"
+                android:id="@+id/editTextNumber"
+                android:hint="@string/choose_number"
+                android:gravity="center" />
 
-        <!-- RangeSeekBar insérée ici en Java -->
-
-    </LinearLayout>
-
-
-    <!--<net.maarti.guessthenumber.view.RangeSeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rangeSeekBar"
-        android:layout_below="@+id/linear1"
-        android:layout_centerHorizontal="true" />
--->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/signInterro"
-        android:textSize="50sp"
-        android:id="@+id/textViewSign"
-        android:layout_below="@id/linear2"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/textViewIndication"
-        android:layout_below="@+id/textViewSign"
-        android:layout_centerHorizontal="true" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewIndication"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout">
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="33"
-        android:inputType="number"
-        android:id="@+id/editTextNumber"
-        android:hint="@string/choose_number"
-        android:gravity="center" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="66"
-        android:text="@string/submit"
-        android:id="@+id/buttonSubmit"
-        android:onClick="onClickSubmitNumber" />
-    </LinearLayout>
-</RelativeLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="66"
+                android:text="@string/submit"
+                android:id="@+id/buttonSubmit"
+                android:onClick="onClickSubmitNumber" />
+        </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

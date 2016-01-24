@@ -6,13 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import net.maarti.guessthenumber.game.Difficulty;
@@ -20,24 +19,14 @@ import net.maarti.guessthenumber.utility.MultimediaManager;
 
 public class MainMenuActivity extends AppCompatActivity {
 
-    //public static final String USERNAME_LABEL = "username";
     public static final String USERNAME_LABEL = "pref_username";
-    private EditText wName = null;
     private MediaPlayer mpClic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu_v02);
+        setContentView(R.layout.activity_main_menu);
         mpClic = MediaPlayer.create(getApplicationContext(),R.raw.clic);
-        //wName = (EditText) findViewById(R.id.ediTextName);
-
-        /*SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String username = preferences.getString(MainMenuActivity.USERNAME_LABEL,"");
-        wName.setText(username);*/
-
-    /*    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
     }
 
     public void onClickNewGame(View view) {
@@ -49,9 +38,6 @@ public class MainMenuActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(Difficulty.DIFFICULTY_LABEL, difficulty);
         editor.apply();
-
-        // On stock le username
-        //saveUsername();
 
         // On joue le son du clic
         MultimediaManager.play(getApplicationContext(), mpClic);
@@ -78,21 +64,8 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void onClickQuit(View view) {
-        // On joue le son du clic
-        MultimediaManager.play(getApplicationContext(), mpClic);
-
         this.finish();
         System.exit(0);
-    }
-
-    private void saveUsername(){
-        String username = wName.getText().toString();
-
-        // On stock le nom saisi dans les param de l'appli
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(USERNAME_LABEL, username);
-        editor.apply();
     }
 
     public void onClickQuickGame(View view) {
@@ -114,9 +87,17 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
         // To count with Play market backstack, After pressing back button,
         // to taken back to our application, we need to add following flags to intent.
-        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
-                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
-                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                    Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        }else{
+            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                    Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
+                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        }
+
         Toast.makeText(MainMenuActivity.this, R.string.toats_rate_app, Toast.LENGTH_LONG).show();
         try {
             startActivity(goToMarket);

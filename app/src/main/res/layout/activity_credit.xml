@@ -16,87 +16,89 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/credits"
-        android:id="@+id/textViewCreditTitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/credits"
+            android:id="@+id/textViewCreditTitle"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewCreditTitle"
-        android:id="@+id/Table1"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
-<TableRow>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/author"
-        android:id="@+id/textViewCreditAuthorLabel"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/devFullName"
-        android:id="@+id/textViewCreditAuthor" />
-</TableRow>
-        <TableRow>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/contact"
-                android:id="@+id/textViewCreditEmailLabel" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/devMail"
-                android:id="@+id/textViewCreditEmail"
-                android:onClick="onClickDevMail"/>
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/website"
-                android:id="@+id/textViewCreditWebsiteLabel" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/appWebSiteUrl"
-                android:id="@+id/textViewCreditWebsite"
-                android:onClick="onClickAppSite"/>
-        </TableRow>
-    </TableLayout>
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewCreditTitle"
+            android:id="@+id/Table1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/author"
+                    android:id="@+id/textViewCreditAuthorLabel"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/devFullName"
+                    android:id="@+id/textViewCreditAuthor" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/contact"
+                    android:id="@+id/textViewCreditEmailLabel" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/devMail"
+                    android:id="@+id/textViewCreditEmail"
+                    android:onClick="onClickDevMail"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/website"
+                    android:id="@+id/textViewCreditWebsiteLabel" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/appWebSiteUrl"
+                    android:id="@+id/textViewCreditWebsite"
+                    android:onClick="onClickAppSite"/>
+            </TableRow>
+        </TableLayout>
 
-   <!-- <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/aboutMe"
-        android:id="@+id/textViewCreditAboutMe"
-        android:layout_below="@id/Table1"/>
+        <!-- <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:text="@string/aboutMe"
+             android:id="@+id/textViewCreditAboutMe"
+             android:layout_below="@id/Table1"/>
 
-    <WebView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/webViewCredit"
-        android:layout_below="@+id/textViewCreditAboutMe"
-        android:layout_centerHorizontal="true"
-        android:minHeight="250dp"/>-->
+         <WebView
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:id="@+id/webViewCredit"
+             android:layout_below="@+id/textViewCreditAboutMe"
+             android:layout_centerHorizontal="true"
+             android:minHeight="250dp"/>-->
 
-        </RelativeLayout>
+        <!--TODO Supprt me : click on pub or Paypal -->
+
+    </RelativeLayout>
     <com.google.android.gms.ads.AdView
         android:id="@+id/bannerCredit"
         android:layout_width="match_parent"
