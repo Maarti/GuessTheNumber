@@ -31,6 +31,7 @@ import net.maarti.guessthenumber.game.Difficulty;
 import net.maarti.guessthenumber.game.Game;
 import net.maarti.guessthenumber.model.DatabaseHandler;
 import net.maarti.guessthenumber.model.Score;
+import net.maarti.guessthenumber.utility.MultimediaManager;
 import net.maarti.guessthenumber.view.RangeSeekBar;
 
 public class GameActivity extends AppCompatActivity {
@@ -171,9 +172,9 @@ public class GameActivity extends AppCompatActivity {
             wRangeSeekBar.setSelectedMaxValue(game.getNearestMax());
             updateNumberIndication();
             if(mpSubmitNumber1.isPlaying())
-                mpSubmitNumber2.start();
+                MultimediaManager.play(getApplicationContext(),mpSubmitNumber2);
             else
-                mpSubmitNumber1.start();
+                MultimediaManager.play(getApplicationContext(), mpSubmitNumber1);
 
         // Nombre gagnant
         }else{
@@ -224,7 +225,7 @@ public class GameActivity extends AppCompatActivity {
 
             AlertDialog a = alert.create();
             a.show();
-            mpWin.start();
+            MultimediaManager.play(getApplicationContext(), mpWin);
         }
 
         wNbTry.setText(getResources().getQuantityString((R.plurals.nbTry), game.getNbStep(), game.getNbStep()));

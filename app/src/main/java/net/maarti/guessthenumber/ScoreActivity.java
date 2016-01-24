@@ -15,6 +15,7 @@ import com.google.android.gms.ads.AdView;
 
 import net.maarti.guessthenumber.model.DatabaseHandler;
 import net.maarti.guessthenumber.model.Score;
+import net.maarti.guessthenumber.utility.MultimediaManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -114,9 +115,9 @@ public class ScoreActivity extends AppCompatActivity {
 
                 // On joue le son du clic
                 if(mpClic1.isPlaying())
-                    mpClic2.start();
+                    MultimediaManager.play(getApplicationContext(), mpClic2);
                 else
-                    mpClic1.start();
+                    MultimediaManager.play(getApplicationContext(), mpClic1);
             }
         });
 
@@ -129,9 +130,9 @@ public class ScoreActivity extends AppCompatActivity {
 
                 // On joue le son du clic
                 if(mpClic1.isPlaying())
-                    mpClic2.start();
+                    MultimediaManager.play(getApplicationContext(), mpClic2);
                 else
-                    mpClic1.start();
+                    MultimediaManager.play(getApplicationContext(), mpClic1);
             }
         });
 

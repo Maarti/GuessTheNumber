@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import net.maarti.guessthenumber.game.Difficulty;
+import net.maarti.guessthenumber.utility.MultimediaManager;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -52,7 +53,7 @@ public class MainMenuActivity extends AppCompatActivity {
         //saveUsername();
 
         // On joue le son du clic
-        mpClic.start();
+        MultimediaManager.play(getApplicationContext(), mpClic);
 
         // On lance la GameActivity
         Intent intent = new Intent(MainMenuActivity.this,GameActivity.class);
@@ -61,7 +62,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void onClickScores(View view) {
         // On joue le son du clic
-        mpClic.start();
+        MultimediaManager.play(getApplicationContext(), mpClic);
 
         Intent intent = new Intent(MainMenuActivity.this,ScoreActivity.class);
         startActivity(intent);
@@ -69,7 +70,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void onClickCredits(View view) {
         // On joue le son du clic
-        mpClic.start();
+        MultimediaManager.play(getApplicationContext(), mpClic);
 
         Intent intent = new Intent(MainMenuActivity.this,CreditActivity.class);
         startActivity(intent);
@@ -77,7 +78,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void onClickQuit(View view) {
         // On joue le son du clic
-        mpClic.start();
+        MultimediaManager.play(getApplicationContext(), mpClic);
 
         this.finish();
         System.exit(0);
@@ -96,17 +97,17 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onClickQuickGame(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.quick_game_alert, null));
+        builder.setView(inflater.inflate(R.layout.quick_game_alert,null));
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
         // On joue le son du clic
-        mpClic.start();
+        MultimediaManager.play(getApplicationContext(), mpClic);
     }
 
     public void onClickRate(View view) {
         // On joue le son du clic
-        mpClic.start();
+        MultimediaManager.play(getApplicationContext(), mpClic);
 
         Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
@@ -126,7 +127,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void onClickShare(View view) {
         // On joue le son du clic
-        mpClic.start();
+        MultimediaManager.play(getApplicationContext(), mpClic);
 
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
@@ -138,7 +139,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void onClickSettings(View view) {
         // On joue le son du clic
-        mpClic.start();
+        MultimediaManager.play(getApplicationContext(), mpClic);
 
         Intent intent = new Intent(MainMenuActivity.this,SettingsActivity.class);
         startActivity(intent);
@@ -146,7 +147,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void onClickInstruction(View view) {
         // On joue le son du clic
-        mpClic.start();
+        MultimediaManager.play(getApplicationContext(), mpClic);
 
         Intent intent = new Intent(MainMenuActivity.this,InstructionActivity.class);
         startActivity(intent);
