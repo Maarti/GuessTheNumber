@@ -226,6 +226,7 @@ public class GameActivity extends AppCompatActivity {
             AlertDialog a = alert.create();
             a.show();
             MultimediaManager.play(getApplicationContext(), mpWin);
+            MultimediaManager.vibrate(getApplicationContext(),400);
         }
 
         wNbTry.setText(getResources().getQuantityString((R.plurals.nbTry), game.getNbStep(), game.getNbStep()));

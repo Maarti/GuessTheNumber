@@ -29,8 +29,7 @@
             android:title="Vibration"
             android:summaryOn="@string/vibrationAllowed"
             android:summaryOff="@string/noVibration"
-            android:defaultValue="true"
-             />
+            android:defaultValue="true" />
         <!--TODO Nb max score -> Widget Number picker : http://stackoverflow.com/questions/25406447/how-to-add-number-range-in-android-preferences -->
     </PreferenceCategory>
 
