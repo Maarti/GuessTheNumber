@@ -86,4 +86,5 @@
     <string name="instruction_rangeHard" translatable="false">1 – 10 000</string>
     <string name="instruction_detail2">You have to guess the correct number as fast as possible and with the least possible attempts to acces the scoreboard!</string>
     <string name="instruction_username">You can change your username in the settings.\n\nHave fun!</string>
+    <string name="toat_must_enter_name">You must enter a name!</string>
 </resources>
