@@ -155,8 +155,7 @@ public class MainMenuActivity extends AppCompatActivity  implements
     }
 
     public void onClickQuit(View view) {
-        this.finish();
-        System.exit(0);
+        this.finishAffinity();
     }
 
     public void onClickQuickGame(View view) {
