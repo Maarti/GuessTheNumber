@@ -6,6 +6,8 @@ import android.os.Bundle;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import net.maarti.guessthenumber.utility.Utility;
+
 public class InstructionActivity extends AppCompatActivity {
 
     @Override
@@ -15,6 +17,6 @@ public class InstructionActivity extends AppCompatActivity {
 
         // Chargement de la bannière pub
         AdView wBanner = (AdView) findViewById(R.id.bannerInstruction);
-        wBanner.loadAd(new AdRequest.Builder().build());
+        wBanner.loadAd(Utility.buildAdRequest());
     }
 }

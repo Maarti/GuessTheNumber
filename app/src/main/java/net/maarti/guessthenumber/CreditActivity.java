@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+
+import net.maarti.guessthenumber.utility.Utility;
 
 public class CreditActivity extends AppCompatActivity {
 
@@ -24,7 +25,7 @@ public class CreditActivity extends AppCompatActivity {
         //webView.loadUrl(getString(R.string.devWebSiteUrl));
 
         // Chargement de la bannière pub
-        wBanner.loadAd(new AdRequest.Builder().build());
+        wBanner.loadAd(Utility.buildAdRequest());
     }
 
     public void onClickDevMail(View view) {

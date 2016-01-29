@@ -96,7 +96,7 @@
              android:layout_centerHorizontal="true"
              android:minHeight="250dp"/>-->
 
-        <!--TODO Supprt me : click on pub or Paypal -->
+        <!--TODO To support me : Buy app or give Paypal -->
 
     </RelativeLayout>
     <com.google.android.gms.ads.AdView
@@ -106,14 +106,5 @@
         android:layout_alignParentBottom="true"
         ads:adSize="SMART_BANNER"
         ads:adUnitId="ca-app-pub-4442511984442196/4629254064"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:layout_above="@id/bannerCredit"
-        android:text="@string/thanksSupport"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"/>
 
 </RelativeLayout>

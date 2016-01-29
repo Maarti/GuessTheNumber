@@ -12,6 +12,12 @@
             android:defaultValue="@string/defautUsername"
             android:dialogTitle="@string/yourName" />
 
+        <EditTextPreference
+            android:key="pref_nbscore"
+            android:title="Score number"
+            android:defaultValue="20"
+            android:numeric="integer" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

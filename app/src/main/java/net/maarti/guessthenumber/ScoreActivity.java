@@ -10,12 +10,12 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.ViewFlipper;
 
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import net.maarti.guessthenumber.model.DatabaseHandler;
 import net.maarti.guessthenumber.model.Score;
 import net.maarti.guessthenumber.utility.MultimediaManager;
+import net.maarti.guessthenumber.utility.Utility;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +28,7 @@ public class ScoreActivity extends AppCompatActivity {
     private MediaPlayer mpClic2;
 
     DatabaseHandler db = new DatabaseHandler(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class ScoreActivity extends AppCompatActivity {
         Button vButtonLeft = (Button) findViewById(R.id.buttonLeft);
         AdView wBanner = (AdView) findViewById(R.id.bannerScore);
         mpClic1 = MediaPlayer.create(getApplicationContext(),R.raw.clic);
-        mpClic2 = MediaPlayer.create(getApplicationContext(),R.raw.clic);
+        mpClic2 = MediaPlayer.create(getApplicationContext(), R.raw.clic);
 
         // Remplissage des listes des scores
         int SCORE_COUNT = 20;
@@ -130,6 +131,6 @@ public class ScoreActivity extends AppCompatActivity {
         });
 
         // Chargement de la bannière pub
-        wBanner.loadAd(new AdRequest.Builder().build());
+        wBanner.loadAd(Utility.buildAdRequest());
     }
 }

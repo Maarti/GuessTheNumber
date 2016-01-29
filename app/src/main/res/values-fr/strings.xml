@@ -10,7 +10,7 @@
     <string name="submit">Valider</string>
     <string name="toast_valid_enter_number">Vous devez entrer un nombre</string>
     <string name="toast_valid_number_value">Le nombre doit être compris entre %1$d et %2$d</string>
-    <string name="win">Félicitations, vous avez gagné !</string>
+    <string name="win">Félicitations %1$s, vous avez gagné en %2$s !</string>
     <plurals name="nbTry">
         <item quantity="one">Essai : %1$d</item>
         <item quantity="other">Essais : %1$d</item>
@@ -29,7 +29,6 @@
     <string name="newGame">Nouvelle partie</string>
     <string name="playAgain">Rejouer</string>
     <string name="scores">Scores</string>
-    <string name="thanksSupport">Si vous souhaitez me soutenir gratuitement, merci de cliquer sur une publicité :)</string>
     <string name="victory">Victoire</string>
     <string name="yourName">Votre nom</string>
     <string name="instructions_01">Devinez le nombre qui a été choisi par l\'ordinateur (entre %1$d et %2$d).</string>
@@ -53,7 +52,12 @@
     <string name="soundsAllowed">Sons autorisés</string>
     <string name="toast_share_app">Merci de partager cette application :)</string>
     <string name="toats_rate_app">Merci de noter cette application :)</string>
-    <string name="versionNumber">Version 1.2.0</string>
+    <string name="versionNumber">Version 1.2.1</string>
     <string name="vibrationAllowed">Vibrations autorisées</string>
     <string name="toat_must_enter_name">Vous devez saisir un nom !</string>
+    <string name="signin_failure">Connexion annulée.</string>
+    <string name="signin_other_error">Problème de connexion. Merci de réessayer plus tard.</string>
+    <string name="disconnect">Déconnexion</string>
+    <string name="toast_connect_for_achievements">Connectez-vous avec Google+ pour remporter des succès</string>
+    <string name="toast_earn_achievements_by_connecting">Vous pouvez remporter des succès en vous connectant avec Google+</string>
 </resources>

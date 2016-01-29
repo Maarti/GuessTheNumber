@@ -24,6 +24,8 @@
     <color name="shareBackgroundGradient">#b7dfc2</color>
     <color name="rateBackground">#C32D2F</color>
     <color name="rateBackgroundGradient">#af2628</color>
+    <color name="achievementsBackground">#E0EFC8</color>
+    <color name="achievementsBackgroundGradient">#d3e2bc</color>
 
     <!-- Background of activities -->
     <color name="gameActivityBackground">#9FCD97</color>

@@ -13,11 +13,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:versionCode="3"
-        android:versionName="1.2.0">
+        android:versionCode="5"
+        android:versionName="1.2.1">
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+        <meta-data android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/app_id" />
 
         <activity
             android:name=".MainMenuActivity"
@@ -28,15 +30,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".GameActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/GameTheme" />
+
         <activity
             android:name=".CreditActivity"
             android:theme="@style/CreditTheme" />
+
         <activity
             android:name=".ScoreActivity"
             android:theme="@style/ScoreTheme" />
@@ -46,12 +51,14 @@
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
+
         <activity
             android:name=".SettingsActivity"
             android:theme="@style/SettingsTheme" />
+
         <activity
             android:name=".InstructionActivity"
-            android:theme="@style/InstructionTheme"></activity>
+            android:theme="@style/InstructionTheme" />
     </application>
 
 </manifest>

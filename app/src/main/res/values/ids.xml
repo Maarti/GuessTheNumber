@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_id" translatable="false">87389127640</string>
+    <string name="package_name" translatable="false">net.maarti.guessthenumber</string>
+    <string name="achievement_easy_peasy" translatable="false">CgkI2IexxsUCEAIQAQ</string>
+    <string name="achievement_medium" translatable="false">CgkI2IexxsUCEAIQAg</string>
+    <string name="achievement_hard_day" translatable="false">CgkI2IexxsUCEAIQAw</string>
+    <string name="achievement_easy_peasy_20" translatable="false">CgkI2IexxsUCEAIQCg</string>
+    <string name="achievement_medium_20" translatable="false">CgkI2IexxsUCEAIQCw</string>
+    <string name="achievement_hard_day_20" translatable="false">CgkI2IexxsUCEAIQDA</string>
+    <string name="achievement_easy_peasy_100" translatable="false">CgkI2IexxsUCEAIQDQ</string>
+    <string name="achievement_medium_100" translatable="false">CgkI2IexxsUCEAIQDg</string>
+    <string name="achievement_hard_day_100" translatable="false">CgkI2IexxsUCEAIQDw</string>
+    <string name="achievement_not_so_easy..." translatable="false">CgkI2IexxsUCEAIQBA</string>
+    <string name="achievement_lightning_fast" translatable="false">CgkI2IexxsUCEAIQEQ</string>
+    <string name="achievement_hard_as_hell_" translatable="false">CgkI2IexxsUCEAIQBQ</string>
+    <string name="achievement_have_you_considered_playing_the_lottery_" translatable="false">CgkI2IexxsUCEAIQEA</string>
+</resources>

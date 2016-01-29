@@ -75,7 +75,6 @@
                     android:layout_height="match_parent"
                     android:id="@+id/listViewScores10"
                     android:layout_below="@id/textViewScoreLevel10"/>
-
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
