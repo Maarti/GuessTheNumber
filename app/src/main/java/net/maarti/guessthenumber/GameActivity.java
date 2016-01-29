@@ -56,7 +56,6 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Timer affiché dans l'écran de victoire
         // TODO tableau des scores
         // TODO Pub interstielle
         // TODO Keyboard view
@@ -231,6 +230,7 @@ public class GameActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         alert.setNegativeButton(R.string.scores, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -243,6 +243,7 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 // On lance la GameActivity
                 Intent intent = new Intent(GameActivity.this, GameActivity.class);
+                intent.putExtra(Difficulty.DIFFICULTY_LABEL,difficulty);
                 startActivity(intent);
             }
         });

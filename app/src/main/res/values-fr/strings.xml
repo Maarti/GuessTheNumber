@@ -52,7 +52,6 @@
     <string name="soundsAllowed">Sons autorisés</string>
     <string name="toast_share_app">Merci de partager cette application :)</string>
     <string name="toats_rate_app">Merci de noter cette application :)</string>
-    <string name="versionNumber">Version 1.2.1</string>
     <string name="vibrationAllowed">Vibrations autorisées</string>
     <string name="toat_must_enter_name">Vous devez saisir un nom !</string>
     <string name="signin_failure">Connexion annulée.</string>

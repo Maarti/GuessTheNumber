@@ -13,7 +13,7 @@
     <string name="rate">Rate</string>
     <string name="share">Share</string>
     <string name="Settings">Settings</string>
-    <string name="versionNumber">Version 1.2.1</string>
+    <string name="version">Version</string>
 
     <!-- Toasts -->
     <string name="toast_valid_number_value">Number must be between %1$d and %2$d</string>

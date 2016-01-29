@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="@string/versionNumber"
+            android:id="@+id/textViewAppVersion"
             android:textColor="@color/DarkGray"
             android:layout_below="@id/textViewAppTitle"
             android:layout_marginTop="10dp"
