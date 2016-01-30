@@ -53,6 +53,8 @@ public class SettingsFragment extends android.preference.PreferenceFragment {
                 }
                 // On met à jour le summary avec le nouveau pseudo
                 preference.setSummary(newValue.toString());
+                // On indique que l'utilisateur a explicitement changé de nom (pour ne pas le remplacer par le nom Google)
+                preferences.edit().putBoolean(MainMenuActivity.EXPLICIT_USERNAME_CHANGE_LABEL, true).apply();
                 return true;
             }
         });

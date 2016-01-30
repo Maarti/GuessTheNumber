@@ -20,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.plus.Plus;
@@ -35,7 +34,8 @@ public class MainMenuActivity extends AppCompatActivity  implements
         GoogleApiClient.OnConnectionFailedListener{
 
     public static final String USERNAME_LABEL = "pref_username";
-    public final static String PREF_AUTO_SIGNIN_LABEL = "pref_auto_signin";
+    public static final String PREF_AUTO_SIGNIN_LABEL = "pref_auto_signin";
+    public static final String EXPLICIT_USERNAME_CHANGE_LABEL = "pref_explicit_username_change" ;
     private MediaPlayer mpClic;
     private static int RC_SIGN_IN = 9001;
     private SharedPreferences preferences;
@@ -82,6 +82,7 @@ public class MainMenuActivity extends AppCompatActivity  implements
                 mSignInClicked = true;
                 mGoogleApiClient.connect();
                 preferences.edit().putBoolean(PREF_AUTO_SIGNIN_LABEL, true).apply();
+                preferences.edit().putBoolean(MainMenuActivity.EXPLICIT_USERNAME_CHANGE_LABEL, false).apply();
             }
         });
         findViewById(R.id.sign_out_button).setOnClickListener(new View.OnClickListener() {
@@ -236,13 +237,15 @@ public class MainMenuActivity extends AppCompatActivity  implements
 
     @Override
     public void onConnected(Bundle bundle) {
+        preferences.edit().putBoolean(PREF_AUTO_SIGNIN_LABEL, true).apply();
         // show sign-out button, hide the sign-in button
         findViewById(R.id.sign_in_button).setVisibility(View.GONE);
         findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
 
-        // (your code here: update UI, enable functionality that depends on sign in, etc)
         //TODO afficher l'icone achievements normale, sinon afficher une version grisée + button disabled
-        if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
+
+        // Si l'utilisateur n'a pas explicitement changé son nom dans les préférences, on l'initialise avec le nom de son compte Google
+        if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null && !preferences.getBoolean(EXPLICIT_USERNAME_CHANGE_LABEL,false)) {
             Person currentPerson = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
             String personName = currentPerson.getDisplayName();
             if (!personName.equals(""))
