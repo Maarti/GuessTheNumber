@@ -20,8 +20,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
 import com.google.example.games.basegameutils.BaseGameUtils;
 
 import net.maarti.guessthenumber.game.Difficulty;
@@ -59,13 +62,14 @@ public class MainMenuActivity extends AppCompatActivity  implements
             e.printStackTrace();
         }
         if (version!=null)
-        ((TextView) findViewById(R.id.textViewAppVersion)).setText(getResources().getString(R.string.version,version));
+            ((TextView) findViewById(R.id.textViewAppVersion)).setText(getResources().getString(R.string.version,version));
 
         // Google API build
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN).addScope(Plus.SCOPE_PLUS_PROFILE)
                 .build();
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -238,6 +242,12 @@ public class MainMenuActivity extends AppCompatActivity  implements
 
         // (your code here: update UI, enable functionality that depends on sign in, etc)
         //TODO afficher l'icone achievements normale, sinon afficher une version grisée + button disabled
+        if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
+            Person currentPerson = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
+            String personName = currentPerson.getDisplayName();
+            if (!personName.equals(""))
+                preferences.edit().putString(MainMenuActivity.USERNAME_LABEL,personName).apply();
+        }
     }
 
     @Override

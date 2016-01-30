@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:versionCode="6"
+        android:versionCode="7"
         android:versionName="1.2.2">
         <meta-data
             android:name="com.google.android.gms.version"
