@@ -14,6 +14,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,11 +29,13 @@ import net.maarti.guessthenumber.utility.MultimediaManager;
 
 public class MainMenuActivity extends AppCompatActivity  implements
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.OnConnectionFailedListener{
 
     public static final String USERNAME_LABEL = "pref_username";
+    public final static String PREF_AUTO_SIGNIN_LABEL = "pref_auto_signin";
     private MediaPlayer mpClic;
     private static int RC_SIGN_IN = 9001;
+    private SharedPreferences preferences;
 
     private boolean mResolvingConnectionFailure = false;
     private boolean mAutoStartSignInFlow = true;
@@ -41,7 +45,6 @@ public class MainMenuActivity extends AppCompatActivity  implements
     // sign in flow, to know you should not attempt
     // to connect in onStart()
     GoogleApiClient mGoogleApiClient;  // initialized in onCreate
-    public final static String EXPLICIT_SIGN_OUT_LABEL = "explicit_sign_out";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +59,17 @@ public class MainMenuActivity extends AppCompatActivity  implements
             e.printStackTrace();
         }
         if (version!=null)
-        ((TextView) findViewById(R.id.textViewAppVersion)).setText(getString(R.string.version)+" "+version);
+        ((TextView) findViewById(R.id.textViewAppVersion)).setText(getResources().getString(R.string.version,version));
 
+        // Google API build
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                        // add other APIs and scopes here as needed
                 .build();
 
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mExplicitSignOut = preferences.getBoolean(EXPLICIT_SIGN_OUT_LABEL, false);
 
         findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +77,7 @@ public class MainMenuActivity extends AppCompatActivity  implements
                 // start the asynchronous sign in flow
                 mSignInClicked = true;
                 mGoogleApiClient.connect();
+                preferences.edit().putBoolean(PREF_AUTO_SIGNIN_LABEL, true).apply();
             }
         });
         findViewById(R.id.sign_out_button).setOnClickListener(new View.OnClickListener() {
@@ -84,9 +87,11 @@ public class MainMenuActivity extends AppCompatActivity  implements
                 mSignInClicked = false;
                 // user explicitly signed out, so turn off auto sign in
                 mExplicitSignOut = true;
-                //if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+                preferences.edit().putBoolean(PREF_AUTO_SIGNIN_LABEL,false).apply();
+                if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
                     Games.signOut(mGoogleApiClient);
                     mGoogleApiClient.disconnect();
+                }
 
                 // show sign-in button, hide the sign-out button
                 findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
@@ -100,7 +105,7 @@ public class MainMenuActivity extends AppCompatActivity  implements
     @Override
     protected void onStart() {
         super.onStart();
-        if (!mInSignInFlow && !mExplicitSignOut && getIntent().getBooleanExtra(MainMenuActivity.EXPLICIT_SIGN_OUT_LABEL,true)) {
+        if (!mInSignInFlow && preferences.getBoolean(PREF_AUTO_SIGNIN_LABEL,true)) {
             // auto sign in
             mGoogleApiClient.connect();
         }
@@ -127,14 +132,9 @@ public class MainMenuActivity extends AppCompatActivity  implements
         // On joue le son du clic
         MultimediaManager.play(getApplicationContext(), mpClic);
 
-        boolean connected = false;
-        if (mGoogleApiClient != null && mGoogleApiClient.isConnected())
-            connected = true;
-
         // On lance la GameActivity en stockant la difficulté dans l'intent
         Intent intent = new Intent(MainMenuActivity.this,GameActivity.class);
         intent.putExtra(Difficulty.DIFFICULTY_LABEL,difficulty);
-        intent.putExtra(EXPLICIT_SIGN_OUT_LABEL,connected);
         startActivity(intent);
     }
 
@@ -155,13 +155,18 @@ public class MainMenuActivity extends AppCompatActivity  implements
     }
 
     public void onClickQuit(View view) {
-        this.finishAffinity();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            this.finishAffinity();
+        }else{
+            this.finish();
+            System.exit(0);
+        }
     }
 
     public void onClickQuickGame(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.quick_game_alert,null));
+        builder.setView(inflater.inflate(R.layout.quick_game_alert, null));
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
@@ -267,6 +272,8 @@ public class MainMenuActivity extends AppCompatActivity  implements
         }
 
         // Put code here to display the sign-in button
+        findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+        findViewById(R.id.sign_out_button).setVisibility(View.GONE);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -280,9 +287,9 @@ public class MainMenuActivity extends AppCompatActivity  implements
                 // failed. The R.string.signin_failure should reference an error
                 // string in your strings.xml file that tells the user they
                 // could not be signed in, such as "Unable to sign in."
-                //BaseGameUtils.showActivityResultError(this,requestCode, resultCode, R.string.signin_failure);
-                mExplicitSignOut = true;
-                PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean(EXPLICIT_SIGN_OUT_LABEL, false);
+                BaseGameUtils.showActivityResultError(this,requestCode, resultCode, R.string.signin_failure);
+                //mExplicitSignOut = true;
+                preferences.edit().putBoolean(PREF_AUTO_SIGNIN_LABEL, false).apply();
             }
         }
     }
@@ -290,7 +297,10 @@ public class MainMenuActivity extends AppCompatActivity  implements
     public void onClickAchievements(View view) {
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected())
             startActivityForResult(Games.Achievements.getAchievementsIntent(mGoogleApiClient), 1);
-        else
+        else {
             Toast.makeText(getApplicationContext(), R.string.toast_connect_for_achievements, Toast.LENGTH_SHORT).show();
+            Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
+            findViewById(R.id.imageButtonAchievements).startAnimation(shake);
+        }
     }
 }

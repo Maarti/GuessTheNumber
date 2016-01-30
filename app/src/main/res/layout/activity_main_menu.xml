@@ -109,6 +109,7 @@
                 style="@style/mainMenuButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/imageButtonAchievements"
                 android:background="@drawable/button_background_achievements"
                 android:src="@drawable/games_achievements"
                 android:layout_weight="70"

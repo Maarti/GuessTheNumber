@@ -53,6 +53,7 @@ public class GameActivity extends AppCompatActivity {
     Game game;
     int difficulty = Difficulty.DIFFICULTY_DEFAULT;
     private GoogleApiClient mGoogleApiClient;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,17 +61,15 @@ public class GameActivity extends AppCompatActivity {
         // TODO Pub interstielle
         // TODO Keyboard view
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate");
+        setContentView(R.layout.activity_game);
 
-        // Recup la difficulté dans les préférences sauvegardées
-        //SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        //difficulty = preferences.getInt(Difficulty.DIFFICULTY_LABEL,Difficulty.DIFFICULTY_DEFAULT);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         // Recup la difficulté dans l'intent
         difficulty = getIntent().getIntExtra(Difficulty.DIFFICULTY_LABEL,Difficulty.DIFFICULTY_DEFAULT);
 
         // Inflate views
-        setContentView(R.layout.activity_game);
+
         wSign = (TextView) findViewById(R.id.textViewSign);
         wNumberIndication = (TextView) findViewById(R.id.textViewNumberIndication);
         wIndication = (TextView) findViewById(R.id.textViewIndication);
@@ -210,7 +209,7 @@ public class GameActivity extends AppCompatActivity {
      */
     private void onWin(){
         // Récupération du pseudo du joueur
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        //SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String username = preferences.getString(MainMenuActivity.USERNAME_LABEL, getString(R.string.defautUsername));
 
         // Ajout du score dans la BDD
@@ -225,8 +224,6 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(GameActivity.this, MainMenuActivity.class);
-                boolean connected = getIntent().getBooleanExtra(MainMenuActivity.EXPLICIT_SIGN_OUT_LABEL,true);
-                intent.putExtra(MainMenuActivity.EXPLICIT_SIGN_OUT_LABEL,connected);
                 startActivity(intent);
             }
         });
@@ -243,12 +240,11 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 // On lance la GameActivity
                 Intent intent = new Intent(GameActivity.this, GameActivity.class);
-                intent.putExtra(Difficulty.DIFFICULTY_LABEL,difficulty);
+                intent.putExtra(Difficulty.DIFFICULTY_LABEL, difficulty);
                 startActivity(intent);
             }
         });
-        AlertDialog a = alert.create();
-        a.show();
+        alert.create().show();
 
         // On joue le son de la victoire et émet une vibration
         MultimediaManager.play(getApplicationContext(), mpWin);
@@ -295,7 +291,7 @@ public class GameActivity extends AppCompatActivity {
      */
     private void shake(int viewId){
         Animation shake = AnimationUtils.loadAnimation(this,R.anim.shake);
-        findViewById(viewId).setAnimation(shake);
+        findViewById(viewId).startAnimation(shake);
     }
 
     public void onClickSubmitNumber(View view) {
@@ -310,7 +306,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (getIntent().getBooleanExtra(MainMenuActivity.EXPLICIT_SIGN_OUT_LABEL,true))
+        if (preferences.getBoolean(MainMenuActivity.PREF_AUTO_SIGNIN_LABEL,false))
             mGoogleApiClient.connect();
     }
 

@@ -13,7 +13,7 @@
     <string name="rate">Rate</string>
     <string name="share">Share</string>
     <string name="Settings">Settings</string>
-    <string name="version">Version</string>
+    <string name="version">Version %1$s</string>
 
     <!-- Toasts -->
     <string name="toast_valid_number_value">Number must be between %1$d and %2$d</string>
@@ -53,7 +53,7 @@
     <string name="signInterro" translatable="false">\?</string>
     <string name="choose_number">Type a number</string>
     <string name="newGame">New game</string>
-    <string name="numberIndication" translatable="false"><![CDATA[%1$d < ? < %2$d]]></string>
+    <string name="numberIndication" translatable="false">%1$d <![CDATA[<]]> ? \u2264 %2$d</string>  <!--TODO inférieur ou équal n'est vrai qu'au début... -->
     <string name="victory">Victory</string>
     <string name="playAgain">Play again</string>
     <string name="home">Home</string>
