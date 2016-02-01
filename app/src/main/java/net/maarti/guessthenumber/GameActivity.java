@@ -19,7 +19,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +33,10 @@ import net.maarti.guessthenumber.model.DatabaseHandler;
 import net.maarti.guessthenumber.model.Score;
 import net.maarti.guessthenumber.utility.MultimediaManager;
 import net.maarti.guessthenumber.utility.Utility;
+import net.maarti.guessthenumber.view.ChronometerMilli;
 import net.maarti.guessthenumber.view.RangeSeekBar;
+
+import java.util.concurrent.TimeUnit;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -45,7 +47,8 @@ public class GameActivity extends AppCompatActivity {
     TextView wNumberIndication = null;
     EditText wNumber = null;
     Button wSubmit = null;
-    Chronometer wChrono = null;
+    //Chronometer wChrono = null;
+    ChronometerMilli wChrono = null;
     RangeSeekBar<Integer> wRangeSeekBar = null;
     DatabaseHandler db = new DatabaseHandler(this);
     private MediaPlayer mpSubmitNumber1, mpSubmitNumber2, mpWin;
@@ -54,6 +57,7 @@ public class GameActivity extends AppCompatActivity {
     int difficulty = Difficulty.DIFFICULTY_DEFAULT;
     private GoogleApiClient mGoogleApiClient;
     private SharedPreferences preferences;
+    private long startTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +80,8 @@ public class GameActivity extends AppCompatActivity {
         wNumber = (EditText) findViewById(R.id.editTextNumber);
         wSubmit = (Button) findViewById(R.id.buttonSubmit);
         wNbTry = (TextView) findViewById(R.id.nbtry);
-        wChrono = (Chronometer) findViewById(R.id.chronometer);
+        //wChrono = (Chronometer) findViewById(R.id.chronometer);
+        wChrono = (ChronometerMilli) findViewById(R.id.chronometerMilli);
         AdView wBanner = (AdView) findViewById(R.id.bannerGame);
 
         // Taille max du champ de saisi du nombre
@@ -112,7 +117,7 @@ public class GameActivity extends AppCompatActivity {
         wNumber.setVisibility(View.VISIBLE);
         wSubmit.setVisibility(View.VISIBLE);
         wNbTry.setText(getResources().getQuantityString((R.plurals.nbTry), game.getNbStep(), game.getNbStep()));
-        wChrono.start();
+
 
         // Création des listeners
         TextWatcher lNumber = new TextWatcher() {
@@ -148,6 +153,10 @@ public class GameActivity extends AppCompatActivity {
         wNumber.setOnFocusChangeListener(listnerOnChangeNumber);
 
         updateNumberIndication();
+
+        // Démarrage des chrono (chrono affiché et chrono interne => pour les dizièmes de seconde))
+        wChrono.start();
+        startTime = System.currentTimeMillis();
     }
 
 
@@ -188,8 +197,10 @@ public class GameActivity extends AppCompatActivity {
             // Nombre gagnant
         } else {
             wChrono.stop();
-            wSign.setText(R.string.signEqual);
+            String totalTime = game.setTotalTime(System.currentTimeMillis()-startTime);
 
+            wChrono.setText(totalTime);
+            wSign.setText(R.string.signEqual);
             // TODO a corriger
             wIndication.setText("");
 
@@ -255,24 +266,26 @@ public class GameActivity extends AppCompatActivity {
     /**
      * When a game is finished, we call this method to check whether achievements has been earned or not.
      */
-    public void handleAchievements(){
+    private void handleAchievements(){
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
-            String[] time = wChrono.getText().toString().split(":");
-            int second = Integer.parseInt(time[0]) * 60 + Integer.parseInt(time[1]);
+            int second = (int) TimeUnit.MILLISECONDS.toSeconds(game.getTotalTime());
 
             if (this.difficulty == Difficulty.EASY) {
+                Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_easy), game.getTotalTime());
                 Games.Achievements.unlock(mGoogleApiClient, getString(R.string.achievement_easy_peasy));
                 Games.Achievements.increment(mGoogleApiClient, getString(R.string.achievement_easy_peasy_20), 1);
                 Games.Achievements.increment(mGoogleApiClient, getString(R.string.achievement_easy_peasy_100), 1);
                 if (second < 10)
                     Games.Achievements.unlock(mGoogleApiClient, getString(R.string.achievement_not_so_easy___));
             } else if (difficulty == Difficulty.MEDIUM) {
+                Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_medium), game.getTotalTime());
                 Games.Achievements.unlock(mGoogleApiClient, getString(R.string.achievement_medium));
                 Games.Achievements.increment(mGoogleApiClient, getString(R.string.achievement_medium_20), 1);
                 Games.Achievements.increment(mGoogleApiClient, getString(R.string.achievement_medium_100), 1);
                 if (second < 15)
                     Games.Achievements.unlock(mGoogleApiClient, getString(R.string.achievement_lightning_fast));
             } else if (difficulty == Difficulty.HARD) {
+                Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_hard), game.getTotalTime());
                 Games.Achievements.unlock(mGoogleApiClient, getString(R.string.achievement_hard_day));
                 Games.Achievements.increment(mGoogleApiClient, getString(R.string.achievement_hard_day_20), 1);
                 Games.Achievements.increment(mGoogleApiClient, getString(R.string.achievement_hard_day_100), 1);
@@ -285,6 +298,12 @@ public class GameActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), R.string.toast_earn_achievements_by_connecting,Toast.LENGTH_SHORT).show();
         }
     }
+/*
+    private void handleScores(){
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+        Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_times_easy), game.getTotalTime());
+        }
+    }*/
 
     /**
      * Shake the view quickly right/left, when number is submited

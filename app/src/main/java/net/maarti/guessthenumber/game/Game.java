@@ -1,6 +1,7 @@
 package net.maarti.guessthenumber.game;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Instancie le jeu en cours.
@@ -10,6 +11,8 @@ public class Game {
 
     private int numberToGuess, max, nbStep = 0, nearestMin = 0, nearestMax;
     private final int min, difficulty;
+    private String totalTimeStr;
+    private long totalTime;
 
     public Game(int difficulty) {
         this.difficulty = difficulty;
@@ -59,6 +62,24 @@ public class Game {
         return nearestMax;
     }
 
+    /**
+     * Pass the total time in milliseconds in paramter, it will format it to String, set the totalTime of the game and return the String formatted totalTime
+     * @param millis    The total time of the game in milliseconds
+     * @return          The total time of the game formatted as mm:ss.xxx
+     */
+    public String setTotalTime(long millis){
+        totalTimeStr = String.format("%02d:%02d.%03d",
+                TimeUnit.MILLISECONDS.toMinutes(millis),
+                TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)),
+                (millis - TimeUnit.SECONDS.toMillis(TimeUnit.MILLISECONDS.toSeconds(millis))) );
+
+        totalTime = millis;
+        return totalTimeStr;
+    }
+
+    public long getTotalTime(){
+        return totalTime;
+    }
 
     public int getMin() {
         return min;

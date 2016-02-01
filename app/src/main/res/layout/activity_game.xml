@@ -40,12 +40,21 @@
                 android:id="@+id/linear1">
 
 
-                <Chronometer
+      <!--          <Chronometer
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/chronometer"
                     android:layout_weight="50"
+                    android:gravity="top" />-->
+
+                <net.maarti.guessthenumber.view.ChronometerMilli
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/chronometerMilli"
+                    android:layout_weight="50"
                     android:gravity="top" />
+
+
 
                 <TextView
                     android:layout_width="match_parent"

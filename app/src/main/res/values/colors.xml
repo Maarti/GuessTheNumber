@@ -45,6 +45,14 @@
     <color name="hardBackground">#83b47a</color>
     <color name="hardBackgroundClicked">#aad1a2</color>
 
+    <!-- Score difficulty buttons background -->
+    <color name="scoresEasyBackground">#95e6e0</color>
+    <color name="scoresEasyBackgroundClicked">#aeeae6</color>
+    <color name="scoresMediumBackground">#73CCC6</color>
+    <color name="scoresMediumBackgroundClicked">#90dfda</color>
+    <color name="scoresHardBackground">#56a6a0</color>
+    <color name="scoresHardBackgroundClicked">#89d2cd</color>
+
     <!-- Score buttons previous/next -->
     <color name="buttonBackground">#05224F</color>
     <color name="buttonPressedBackground">#0f397b</color>

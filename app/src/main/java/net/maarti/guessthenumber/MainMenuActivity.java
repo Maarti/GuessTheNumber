@@ -139,7 +139,7 @@ public class MainMenuActivity extends AppCompatActivity  implements
 
         // On lance la GameActivity en stockant la difficulté dans l'intent
         Intent intent = new Intent(MainMenuActivity.this,GameActivity.class);
-        intent.putExtra(Difficulty.DIFFICULTY_LABEL,difficulty);
+        intent.putExtra(Difficulty.DIFFICULTY_LABEL, difficulty);
         startActivity(intent);
     }
 
@@ -147,8 +147,16 @@ public class MainMenuActivity extends AppCompatActivity  implements
         // On joue le son du clic
         MultimediaManager.play(getApplicationContext(), mpClic);
 
-        Intent intent = new Intent(MainMenuActivity.this,ScoreActivity.class);
-        startActivity(intent);
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            LayoutInflater inflater = this.getLayoutInflater();
+            builder.setView(inflater.inflate(R.layout.score_alert, null));
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }else {
+            Intent intent = new Intent(MainMenuActivity.this, ScoreActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void onClickCredits(View view) {
@@ -310,10 +318,26 @@ public class MainMenuActivity extends AppCompatActivity  implements
     public void onClickAchievements(View view) {
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected())
             startActivityForResult(Games.Achievements.getAchievementsIntent(mGoogleApiClient), 1);
+            //startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,getString(R.string.leaderboard_easy)), 2);
         else {
             Toast.makeText(getApplicationContext(), R.string.toast_connect_for_achievements, Toast.LENGTH_SHORT).show();
             Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
             findViewById(R.id.imageButtonAchievements).startAnimation(shake);
         }
+    }
+
+    public void onClickScoresEasy(View view) {
+        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, getString(R.string.leaderboard_easy)), 2);
+        MultimediaManager.play(getApplicationContext(), mpClic);
+    }
+
+    public void onClickScoresMedium(View view) {
+        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, getString(R.string.leaderboard_medium)), 3);
+        MultimediaManager.play(getApplicationContext(), mpClic);
+    }
+
+    public void onClickScoresHard(View view) {
+        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, getString(R.string.leaderboard_hard)), 4);
+        MultimediaManager.play(getApplicationContext(), mpClic);
     }
 }
