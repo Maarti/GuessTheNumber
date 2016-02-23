@@ -8,8 +8,8 @@ android {
         applicationId "net.maarti.guessthenumber"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 8
-        versionName "1.2.3"
+        versionCode 9
+        versionName "2.0.00"
     }
     buildTypes {
         release {

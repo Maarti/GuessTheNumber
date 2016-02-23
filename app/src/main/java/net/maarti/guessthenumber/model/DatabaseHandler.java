@@ -15,17 +15,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "guessTheNumber";
+    private static final String DATABASE_NAME = "guessthenumber.db";
 
-    // Contacts table name
-    private static final String TABLE_SCORE = "score";
-
-    // Contacts Table Columns names
-    private static final String ID = "_id";
-    private static final String USERNAME = "username";
-    private static final String CHRONO = "chrono";
-    private static final String TRIES = "tries";
-    private static final String DIFFICULTY = "difficulty";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -34,12 +25,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_SCORE_TABLE = "CREATE TABLE " + TABLE_SCORE + "("
-                + ID + " INTEGER PRIMARY KEY,"
-                + USERNAME + " TEXT,"
-                + CHRONO + " TEXT,"
-                + TRIES + " INTEGER,"
-                + DIFFICULTY + " TEXT" + ")";
+        String CREATE_SCORE_TABLE = "CREATE TABLE " + ScoreContract.ScoreEntry.TABLE_NAME + "("
+                + ScoreContract.ScoreEntry._ID + " INTEGER PRIMARY KEY,"
+                + ScoreContract.ScoreEntry.COLUMN_USERNAME + " TEXT,"
+                + ScoreContract.ScoreEntry.COLUMN_CHRONO + " TEXT,"
+                + ScoreContract.ScoreEntry.COLUMN_TRIES + " INTEGER,"
+                + ScoreContract.ScoreEntry.COLUMN_DIFFICULTY + " TEXT" + ")";
         db.execSQL(CREATE_SCORE_TABLE);
     }
 
@@ -47,14 +38,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCORE);
+        db.execSQL("DROP TABLE IF EXISTS " + ScoreContract.ScoreEntry.TABLE_NAME);
         // Create tables again
         onCreate(db);
     }
 
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCORE);
+        db.execSQL("DROP TABLE IF EXISTS " + ScoreContract.ScoreEntry.TABLE_NAME);
         onCreate(db);
     }
 
@@ -62,13 +53,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(USERNAME, score.getUsername());
-        values.put(CHRONO, score.getChrono());
-        values.put(TRIES, score.getTries());
-        values.put(DIFFICULTY, score.getDifficulty());
+        values.put(ScoreContract.ScoreEntry.COLUMN_USERNAME, score.getUsername());
+        values.put(ScoreContract.ScoreEntry.COLUMN_CHRONO, score.getChrono());
+        values.put(ScoreContract.ScoreEntry.COLUMN_TRIES, score.getTries());
+        values.put(ScoreContract.ScoreEntry.COLUMN_DIFFICULTY, score.getDifficulty());
 
         // Inserting Row
-        db.insert(TABLE_SCORE, null, values);
+        db.insert(ScoreContract.ScoreEntry.TABLE_NAME, null, values);
         db.close(); // Closing database connection
     }
 
@@ -97,7 +88,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public List<Score> getTopScores(int difficulty, int limit) {
         List<Score> scoreList = new ArrayList<>();
-        String selectQuery = "SELECT * FROM " + TABLE_SCORE + " WHERE " + DIFFICULTY+" = "+String.valueOf(difficulty) + " ORDER BY "+CHRONO+" ASC LIMIT "+ String.valueOf(limit);
+        String selectQuery = "SELECT * FROM " + ScoreContract.ScoreEntry.TABLE_NAME + " WHERE " + ScoreContract.ScoreEntry.COLUMN_DIFFICULTY+" = "+String.valueOf(difficulty) + " ORDER BY "+ ScoreContract.ScoreEntry.COLUMN_CHRONO+" ASC LIMIT "+ String.valueOf(limit);
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
