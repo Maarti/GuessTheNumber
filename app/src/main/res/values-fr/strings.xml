@@ -60,4 +60,8 @@
     <string name="toast_connect_for_achievements">Connectez-vous avec Google+ pour remporter des succès</string>
     <string name="toast_earn_achievements_by_connecting">Vous pouvez remporter des succès en vous connectant avec Google+</string>
     <string name="version">Version %1$s</string>
+    <plurals name="tryNumber">
+        <item quantity="one">%1$d essai</item>
+        <item quantity="other">%1$d essais</item>
+    </plurals>
 </resources>

@@ -41,6 +41,10 @@
     <string name="scores">Scores</string>
     <string name="previousSign" translatable="false"><![CDATA[<<]]></string>
     <string name="nextSign" translatable="false"><![CDATA[>>]]></string>
+    <plurals name="tryNumber">
+        <item quantity="one">%1$d try</item>
+        <item quantity="other">%1$d tries</item>
+    </plurals>
 
     <!-- Game -->
     <string name="more">It\'s more than %1$d!</string>

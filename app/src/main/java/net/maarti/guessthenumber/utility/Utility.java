@@ -2,8 +2,6 @@ package net.maarti.guessthenumber.utility;
 
 import com.google.android.gms.ads.AdRequest;
 
-import net.maarti.guessthenumber.BuildConfig;
-
 /**
  * Class with utilities function for the app
  * Created by Bryan MARTINET on 27/01/2016.
@@ -27,6 +25,20 @@ public class Utility {
                     .build();
         //else
          //   return new AdRequest.Builder().build();
+    }
+
+    /**
+     * Format the time string to user-friendly format if it's less than a minute
+     * @param timeStr   Input time string formatted as "00:15.750"
+     * @return          Output formatted time string as "15.750s"
+     */
+    public static String formatTime(String timeStr){
+        String[] parts = timeStr.split(":|\\.");
+        if (parts.length>2 && parts[0].equals("00")) {
+            return String.valueOf(Integer.parseInt(parts[1])) +"."+ parts[2] + "s";
+        }
+        else
+            return timeStr;
     }
 
 }
