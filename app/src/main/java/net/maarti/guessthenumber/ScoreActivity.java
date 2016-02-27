@@ -1,25 +1,22 @@
 package net.maarti.guessthenumber;
 
+import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.ViewFlipper;
 
 import com.google.android.gms.ads.AdView;
 
-import net.maarti.guessthenumber.model.DatabaseHandler;
-import net.maarti.guessthenumber.model.Score;
+import net.maarti.guessthenumber.adapter.ScoreAdapter;
+import net.maarti.guessthenumber.game.Difficulty;
+import net.maarti.guessthenumber.model.ScoreContract;
+import net.maarti.guessthenumber.model.ScoreDbHelper;
 import net.maarti.guessthenumber.utility.MultimediaManager;
 import net.maarti.guessthenumber.utility.Utility;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class ScoreActivity extends AppCompatActivity {
 
@@ -27,7 +24,7 @@ public class ScoreActivity extends AppCompatActivity {
     private MediaPlayer mpClic1;
     private MediaPlayer mpClic2;
 
-    DatabaseHandler db = new DatabaseHandler(this);
+    ScoreDbHelper db = new ScoreDbHelper(this);
 
 
     @Override
@@ -35,9 +32,9 @@ public class ScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        ListView vScores10 = (ListView) findViewById(R.id.listViewScores10);
-        ListView vScores20 = (ListView) findViewById(R.id.listViewScores20);
-        ListView vScores30 = (ListView) findViewById(R.id.listViewScores30);
+        ListView vScoresEasy = (ListView) findViewById(R.id.listViewScores10);
+        ListView vScoresMedium = (ListView) findViewById(R.id.listViewScores20);
+        ListView vScoresHard = (ListView) findViewById(R.id.listViewScores30);
         vFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
         Button vButtonRight = (Button) findViewById(R.id.buttonRight);
         Button vButtonLeft = (Button) findViewById(R.id.buttonLeft);
@@ -46,8 +43,35 @@ public class ScoreActivity extends AppCompatActivity {
         mpClic2 = MediaPlayer.create(getApplicationContext(), R.raw.clic);
 
         // Remplissage des listes des scores
-        int SCORE_COUNT = 20;
-        List<Score> listScores10 = db.getTopScores(10, SCORE_COUNT);
+        //int SCORE_COUNT = 20;
+        String sortOrder = ScoreContract.ScoreEntry.COLUMN_CHRONO + " ASC, "+ ScoreContract.ScoreEntry.COLUMN_TRIES+" ASC";
+        Cursor scoreEasyCursor = getContentResolver().query(
+                ScoreContract.ScoreEntry.CONTENT_URI,
+                null,
+                ScoreContract.ScoreEntry.COLUMN_DIFFICULTY + " = "+Difficulty.EASY,
+                null,
+                sortOrder);
+        Cursor scoreMediumCursor = getContentResolver().query(
+                ScoreContract.ScoreEntry.CONTENT_URI,
+                null,
+                ScoreContract.ScoreEntry.COLUMN_DIFFICULTY + " = "+Difficulty.MEDIUM,
+                null,
+                sortOrder);
+        Cursor scoreHardCursor = getContentResolver().query(
+                ScoreContract.ScoreEntry.CONTENT_URI,
+                null,
+                ScoreContract.ScoreEntry.COLUMN_DIFFICULTY + " = "+Difficulty.HARD,
+                null,
+                sortOrder);
+
+        ScoreAdapter scoreAdapterEasy = new ScoreAdapter(this,scoreEasyCursor,0);
+        ScoreAdapter scoreAdapterMedium = new ScoreAdapter(this,scoreMediumCursor,0);
+        ScoreAdapter scoreAdapterHard = new ScoreAdapter(this,scoreHardCursor,0);
+
+        vScoresEasy.setAdapter(scoreAdapterEasy);
+        vScoresMedium.setAdapter(scoreAdapterMedium);
+        vScoresHard.setAdapter(scoreAdapterHard);
+       /* List<Score> listScores10 = db.getTopScores(10, SCORE_COUNT);
         List<Score> listScores20 = db.getTopScores(20, SCORE_COUNT);
         List<Score> listScores30 = db.getTopScores(30, SCORE_COUNT);
 
@@ -95,9 +119,9 @@ public class ScoreActivity extends AppCompatActivity {
                 new int[] {android.R.id.text1, android.R.id.text2 }
         );
 
-        vScores10.setAdapter(adapter10);
-        vScores20.setAdapter(adapter20);
-        vScores30.setAdapter(adapter30);
+        vScoresEasy.setAdapter(adapter10);
+        vScoresMedium.setAdapter(adapter20);
+        vScores30.setAdapter(adapter30);*/
 
         // Gestion des boutons "suivant/précédent"
         vButtonRight.setOnClickListener(new View.OnClickListener() {

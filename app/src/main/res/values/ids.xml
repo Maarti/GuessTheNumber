@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
+    <!-- App infos -->
     <string name="app_id" translatable="false">87389127640</string>
     <string name="package_name" translatable="false">net.maarti.guessthenumber</string>
 

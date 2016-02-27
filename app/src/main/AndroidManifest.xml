@@ -19,6 +19,9 @@
         <meta-data android:name="com.google.android.gms.games.APP_ID"
             android:value="@string/app_id" />
 
+        <provider
+            android:authorities="@string/package_name"
+            android:name=".model.ScoreProvider" />
         <activity
             android:name=".MainMenuActivity"
             android:screenOrientation="portrait">

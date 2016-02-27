@@ -1,6 +1,7 @@
 package net.maarti.guessthenumber;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,8 +30,7 @@ import com.google.android.gms.games.Games;
 
 import net.maarti.guessthenumber.game.Difficulty;
 import net.maarti.guessthenumber.game.Game;
-import net.maarti.guessthenumber.model.DatabaseHandler;
-import net.maarti.guessthenumber.model.Score;
+import net.maarti.guessthenumber.model.ScoreContract;
 import net.maarti.guessthenumber.utility.MultimediaManager;
 import net.maarti.guessthenumber.utility.Utility;
 import net.maarti.guessthenumber.view.ChronometerMilli;
@@ -50,7 +50,7 @@ public class GameActivity extends AppCompatActivity {
     //Chronometer wChrono = null;
     ChronometerMilli wChrono = null;
     RangeSeekBar<Integer> wRangeSeekBar = null;
-    DatabaseHandler db = new DatabaseHandler(this);
+    //ScoreDbHelper db = new ScoreDbHelper(this);
     private MediaPlayer mpSubmitNumber1, mpSubmitNumber2, mpWin;
 
     Game game;
@@ -224,7 +224,13 @@ public class GameActivity extends AppCompatActivity {
         String username = preferences.getString(MainMenuActivity.USERNAME_LABEL, getString(R.string.defautUsername));
 
         // Ajout du score dans la BDD
-        db.addScore(new Score(username, String.valueOf(wChrono.getText()), game.getNbStep(), String.valueOf(difficulty)));
+        ContentValues scoreValues = new ContentValues();
+        scoreValues.put(ScoreContract.ScoreEntry.COLUMN_USERNAME,username);
+        scoreValues.put(ScoreContract.ScoreEntry.COLUMN_CHRONO,String.valueOf(wChrono.getText()));
+        scoreValues.put(ScoreContract.ScoreEntry.COLUMN_TRIES,game.getNbStep());
+        scoreValues.put(ScoreContract.ScoreEntry.COLUMN_DIFFICULTY,String.valueOf(difficulty));
+        getContentResolver().insert(ScoreContract.ScoreEntry.CONTENT_URI,scoreValues);
+        //db.addScore(new Score(username, String.valueOf(wChrono.getText()), game.getNbStep(), String.valueOf(difficulty)));
 
         // Affichage de la popup de victoire
         AlertDialog.Builder alert = new AlertDialog.Builder(this);

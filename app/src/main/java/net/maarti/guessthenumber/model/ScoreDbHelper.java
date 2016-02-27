@@ -1,15 +1,10 @@
 package net.maarti.guessthenumber.model;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class DatabaseHandler extends SQLiteOpenHelper {
+public class ScoreDbHelper extends SQLiteOpenHelper {
     // All Static variables
     // Database Version
     private static final int DATABASE_VERSION = 1;
@@ -18,7 +13,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "guessthenumber.db";
 
 
-    public DatabaseHandler(Context context) {
+    public ScoreDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -27,10 +22,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_SCORE_TABLE = "CREATE TABLE " + ScoreContract.ScoreEntry.TABLE_NAME + "("
                 + ScoreContract.ScoreEntry._ID + " INTEGER PRIMARY KEY,"
-                + ScoreContract.ScoreEntry.COLUMN_USERNAME + " TEXT,"
-                + ScoreContract.ScoreEntry.COLUMN_CHRONO + " TEXT,"
-                + ScoreContract.ScoreEntry.COLUMN_TRIES + " INTEGER,"
-                + ScoreContract.ScoreEntry.COLUMN_DIFFICULTY + " TEXT" + ")";
+                + ScoreContract.ScoreEntry.COLUMN_USERNAME + " TEXT NOT NULL,"
+                + ScoreContract.ScoreEntry.COLUMN_CHRONO + " TEXT NOT NULL,"
+                + ScoreContract.ScoreEntry.COLUMN_TRIES + " INTEGER NOT NULL,"
+                + ScoreContract.ScoreEntry.COLUMN_DIFFICULTY + " TEXT NOT NULL" + ")";
         db.execSQL(CREATE_SCORE_TABLE);
     }
 
@@ -49,7 +44,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addScore(Score score) {
+  /*  public void addScore(Score score) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -63,7 +58,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
- /*   public List<Score> getAllScores() {
+    public List<Score> getAllScores() {
         List<Score> scoreList = new ArrayList<>();
         String selectQuery = "SELECT  * FROM " + TABLE_SCORE;
 
@@ -84,7 +79,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         cursor.close();
         return scoreList;
-    }*/
+    }
 
     public List<Score> getTopScores(int difficulty, int limit) {
         List<Score> scoreList = new ArrayList<>();
@@ -107,5 +102,5 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         cursor.close();
         return scoreList;
-    }
+    }*/
 }
