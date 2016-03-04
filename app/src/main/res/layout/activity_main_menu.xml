@@ -79,42 +79,15 @@
         android:layout_weight="33"
         android:background="@color/achievementsBackground">
 
-        <LinearLayout
+        <ImageButton
+            style="@style/mainMenuButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="33">
-            <!-- sign-in button -->
-            <com.google.android.gms.common.SignInButton
-                android:id="@+id/sign_in_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="30"
-                android:background="@color/achievementsBackground"
-                app:buttonSize="standard" />
-
-            <!-- sign-out button -->
-            <Button
-                style="@style/mainMenuButton"
-                android:id="@+id/sign_out_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/disconnect"
-                android:visibility="gone"
-                android:layout_weight="30"
-                android:textSize="16sp"
-                android:background="@color/White" />
-
-            <ImageButton
-                style="@style/mainMenuButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageButtonAchievements"
-                android:background="@drawable/button_background_achievements"
-                android:src="@drawable/games_achievements"
-                android:layout_weight="70"
-                android:onClick="onClickAchievements" />
-        </LinearLayout>
+            android:id="@+id/imageButtonAchievements"
+            android:background="@drawable/button_background_achievements"
+            android:src="@drawable/games_achievements"
+            android:layout_weight="33"
+            android:onClick="onClickAchievements" />
 
         <Button
             style="@style/mainMenuButton"
@@ -159,17 +132,38 @@
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="12">
+
+        <!-- sign-in button -->
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="55"
+            android:background="@color/White"
+            app:buttonSize="standard" />
+
+        <!-- sign-out button -->
+        <Button
+            style="@style/mainMenuButton"
+            android:id="@+id/sign_out_button"
+            android:layout_height="wrap_content"
+            android:text="@string/disconnect"
+            android:visibility="gone"
+            android:layout_weight="55"
+            android:textSize="16sp"
+            android:background="@color/White" />
+
         <Button
             style="@style/mainMenuButton"
             android:layout_height="match_parent"
             android:textColor="@color/White"
             android:text="@string/credits"
-            android:layout_weight="35"
+            android:layout_weight="45"
             android:background="@drawable/button_background_credits"
             android:textSize="20sp"
             android:onClick="onClickCredits"/>
 
-        <Button
+        <!--<Button
             style="@style/mainMenuButton"
             android:layout_height="match_parent"
             android:textColor="@color/White"
@@ -177,6 +171,6 @@
             android:layout_weight="65"
             android:background="@drawable/button_background_quit"
             android:textSize="20sp"
-            android:onClick="onClickQuit"/>
+            android:onClick="onClickQuit"/>-->
     </LinearLayout>
 </LinearLayout>

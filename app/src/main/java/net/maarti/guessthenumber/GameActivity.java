@@ -61,8 +61,7 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO tableau des scores
-        // TODO Pub interstielle
+        // TODO Pub interstitielle
         // TODO Keyboard view
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);

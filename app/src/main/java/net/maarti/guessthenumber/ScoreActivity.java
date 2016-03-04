@@ -1,15 +1,22 @@
 package net.maarti.guessthenumber;
 
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
 
 import net.maarti.guessthenumber.adapter.ScoreAdapter;
 import net.maarti.guessthenumber.game.Difficulty;
@@ -23,14 +30,18 @@ public class ScoreActivity extends AppCompatActivity {
     private ViewFlipper vFlipper;
     private MediaPlayer mpClic1;
     private MediaPlayer mpClic2;
+    private SharedPreferences preferences;
 
     ScoreDbHelper db = new ScoreDbHelper(this);
-
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mGoogleApiClient = new GoogleApiClient.Builder(this).addApi(Games.API).addScope(Games.SCOPE_GAMES).build();
 
         ListView vScoresEasy = (ListView) findViewById(R.id.listViewScores10);
         ListView vScoresMedium = (ListView) findViewById(R.id.listViewScores20);
@@ -156,5 +167,51 @@ public class ScoreActivity extends AppCompatActivity {
 
         // Chargement de la bannière pub
         wBanner.loadAd(Utility.buildAdRequest());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (preferences.getBoolean(MainMenuActivity.PREF_AUTO_SIGNIN_LABEL,false))
+            mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mGoogleApiClient.disconnect();
+    }
+
+    public void onClickGoogleScore(View view) {
+        // On joue le son du clic
+        MultimediaManager.play(getApplicationContext(), mpClic1);
+
+        // Si on est connecté avec google on affiche le Social Leaderboard
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+            String scoreId = getString(R.string.leaderboard_easy);
+            int activityId = 1;
+            switch(view.getId()){
+                case R.id.googleScoreEasy :
+                    scoreId = getString(R.string.leaderboard_easy);
+                    activityId = 1;
+                    break;
+                case R.id.googleScoreMedium :
+                    scoreId = getString(R.string.leaderboard_medium);
+                    activityId = 2;
+                    break;
+                case R.id.googleScoreHard :
+                    scoreId = getString(R.string.leaderboard_hard);
+                    activityId = 3;
+                    break;
+            }
+            startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, scoreId), activityId);
+
+        // Sinon on affiche un toast
+        } else {
+            Toast.makeText(getApplicationContext(),"Connect with Google+ to see world and social leaderboards", Toast.LENGTH_SHORT).show();
+            Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
+            view.startAnimation(shake);
+        }
+
     }
 }

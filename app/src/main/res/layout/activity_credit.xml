@@ -23,7 +23,8 @@
             android:text="@string/credits"
             android:id="@+id/textViewCreditTitle"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textAllCaps="true" />
 
         <TableLayout
             android:layout_width="wrap_content"

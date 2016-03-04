@@ -147,16 +147,16 @@ public class MainMenuActivity extends AppCompatActivity  implements
         // On joue le son du clic
         MultimediaManager.play(getApplicationContext(), mpClic);
 
-        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+      /*  if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             LayoutInflater inflater = this.getLayoutInflater();
             builder.setView(inflater.inflate(R.layout.score_alert, null));
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
-        }else {
+        }else {*/
             Intent intent = new Intent(MainMenuActivity.this, ScoreActivity.class);
             startActivity(intent);
-        }
+       // }
     }
 
     public void onClickCredits(View view) {
@@ -167,14 +167,14 @@ public class MainMenuActivity extends AppCompatActivity  implements
         startActivity(intent);
     }
 
-    public void onClickQuit(View view) {
+  /*  public void onClickQuit(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             this.finishAffinity();
         }else{
             this.finish();
             System.exit(0);
         }
-    }
+    }*/
 
     public void onClickQuickGame(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -324,9 +324,10 @@ public class MainMenuActivity extends AppCompatActivity  implements
             Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
             findViewById(R.id.imageButtonAchievements).startAnimation(shake);
         }
+        MultimediaManager.play(getApplicationContext(), mpClic);
     }
 
-    public void onClickScoresEasy(View view) {
+  /*  public void onClickScoresEasy(View view) {
         startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, getString(R.string.leaderboard_easy)), 2);
         MultimediaManager.play(getApplicationContext(), mpClic);
     }
@@ -339,5 +340,5 @@ public class MainMenuActivity extends AppCompatActivity  implements
     public void onClickScoresHard(View view) {
         startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, getString(R.string.leaderboard_hard)), 4);
         MultimediaManager.play(getApplicationContext(), mpClic);
-    }
+    }*/
 }
