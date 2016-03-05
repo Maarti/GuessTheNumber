@@ -5,6 +5,9 @@ import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.app.LoaderManager;
+import android.content.CursorLoader;
+import android.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -21,18 +24,22 @@ import com.google.android.gms.games.Games;
 import net.maarti.guessthenumber.adapter.ScoreAdapter;
 import net.maarti.guessthenumber.game.Difficulty;
 import net.maarti.guessthenumber.model.ScoreContract;
-import net.maarti.guessthenumber.model.ScoreDbHelper;
 import net.maarti.guessthenumber.utility.MultimediaManager;
 import net.maarti.guessthenumber.utility.Utility;
 
-public class ScoreActivity extends AppCompatActivity {
+public class ScoreActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+
+    private static final int SCORE_LOADER_EASY_ID = 0;
+    private static final int SCORE_LOADER_MEDIUM_ID = 1;
+    private static final int SCORE_LOADER_HARD_ID = 2;
 
     private ViewFlipper vFlipper;
     private MediaPlayer mpClic1;
     private MediaPlayer mpClic2;
     private SharedPreferences preferences;
+    private  ScoreAdapter scoreAdapterEasy, scoreAdapterMedium, scoreAdapterHard;
 
-    ScoreDbHelper db = new ScoreDbHelper(this);
+  //  ScoreDbHelper db = new ScoreDbHelper(this);
     private GoogleApiClient mGoogleApiClient;
 
     @Override
@@ -53,9 +60,12 @@ public class ScoreActivity extends AppCompatActivity {
         mpClic1 = MediaPlayer.create(getApplicationContext(),R.raw.clic);
         mpClic2 = MediaPlayer.create(getApplicationContext(), R.raw.clic);
 
+        getLoaderManager().initLoader(SCORE_LOADER_EASY_ID, null, this);
+        getLoaderManager().initLoader(SCORE_LOADER_MEDIUM_ID, null, this);
+        getLoaderManager().initLoader(SCORE_LOADER_HARD_ID, null, this);
+
         // Remplissage des listes des scores
-        //int SCORE_COUNT = 20;
-        String sortOrder = ScoreContract.ScoreEntry.COLUMN_CHRONO + " ASC, "+ ScoreContract.ScoreEntry.COLUMN_TRIES+" ASC";
+       /* String sortOrder = ScoreContract.ScoreEntry.COLUMN_CHRONO + " ASC, "+ ScoreContract.ScoreEntry.COLUMN_TRIES+" ASC";
         Cursor scoreEasyCursor = getContentResolver().query(
                 ScoreContract.ScoreEntry.CONTENT_URI,
                 null,
@@ -73,66 +83,19 @@ public class ScoreActivity extends AppCompatActivity {
                 null,
                 ScoreContract.ScoreEntry.COLUMN_DIFFICULTY + " = "+Difficulty.HARD,
                 null,
-                sortOrder);
+                sortOrder);*/
 
-        ScoreAdapter scoreAdapterEasy = new ScoreAdapter(this,scoreEasyCursor,0);
+       /* ScoreAdapter scoreAdapterEasy = new ScoreAdapter(this,scoreEasyCursor,0);
         ScoreAdapter scoreAdapterMedium = new ScoreAdapter(this,scoreMediumCursor,0);
-        ScoreAdapter scoreAdapterHard = new ScoreAdapter(this,scoreHardCursor,0);
+        ScoreAdapter scoreAdapterHard = new ScoreAdapter(this,scoreHardCursor,0);*/
+        scoreAdapterEasy = new ScoreAdapter(this,null,0);
+        scoreAdapterMedium = new ScoreAdapter(this,null,0);
+        scoreAdapterHard = new ScoreAdapter(this,null,0);
+
 
         vScoresEasy.setAdapter(scoreAdapterEasy);
         vScoresMedium.setAdapter(scoreAdapterMedium);
         vScoresHard.setAdapter(scoreAdapterHard);
-       /* List<Score> listScores10 = db.getTopScores(10, SCORE_COUNT);
-        List<Score> listScores20 = db.getTopScores(20, SCORE_COUNT);
-        List<Score> listScores30 = db.getTopScores(30, SCORE_COUNT);
-
-        List<HashMap<String, Score>> liste10 = new ArrayList<>();
-        List<HashMap<String, Score>> liste20 = new ArrayList<>();
-        List<HashMap<String, Score>> liste30 = new ArrayList<>();
-
-        HashMap<String, Score> element;
-
-        for (Score s : listScores10) {
-            element = new HashMap<>();
-            element.put("score", s);
-            liste10.add(element);
-        }
-        for (Score s : listScores20) {
-            element = new HashMap<>();
-            element.put("score", s);
-            liste20.add(element);
-        }
-        for (Score s : listScores30) {
-            element = new HashMap<>();
-            element.put("score", s);
-            liste30.add(element);
-        }
-
-        ListAdapter adapter10 = new SimpleAdapter(
-                this,
-                liste10,
-                android.R.layout.activity_list_item,
-                new String[] {"score"},
-                new int[] {android.R.id.text1, android.R.id.text2 }
-        );
-        ListAdapter adapter20 = new SimpleAdapter(
-                this,
-                liste20,
-                android.R.layout.activity_list_item,
-                new String[] {"score"},
-                new int[] {android.R.id.text1, android.R.id.text2 }
-        );
-        ListAdapter adapter30 = new SimpleAdapter(
-                this,
-                liste30,
-                android.R.layout.activity_list_item,
-                new String[] {"score"},
-                new int[] {android.R.id.text1, android.R.id.text2 }
-        );
-
-        vScoresEasy.setAdapter(adapter10);
-        vScoresMedium.setAdapter(adapter20);
-        vScores30.setAdapter(adapter30);*/
 
         // Gestion des boutons "suivant/précédent"
         vButtonRight.setOnClickListener(new View.OnClickListener() {
@@ -213,5 +176,60 @@ public class ScoreActivity extends AppCompatActivity {
             view.startAnimation(shake);
         }
 
+    }
+
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        String sortOrder = ScoreContract.ScoreEntry.COLUMN_CHRONO + " ASC, "+ ScoreContract.ScoreEntry.COLUMN_TRIES+" ASC";
+        int difficultyColumn = Difficulty.EASY;
+        switch (id){
+            case SCORE_LOADER_EASY_ID:
+                difficultyColumn = Difficulty.EASY;
+                break;
+            case SCORE_LOADER_MEDIUM_ID:
+                difficultyColumn = Difficulty.MEDIUM;
+                break;
+            case SCORE_LOADER_HARD_ID:
+                difficultyColumn = Difficulty.HARD;
+                break;
+        }
+        return new CursorLoader(this,
+                ScoreContract.ScoreEntry.CONTENT_URI,
+                null,
+                ScoreContract.ScoreEntry.COLUMN_DIFFICULTY + " = "+difficultyColumn,
+                null,
+                sortOrder);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        switch (loader.getId())
+        {
+            case SCORE_LOADER_EASY_ID:
+                scoreAdapterEasy.swapCursor(data);
+                break;
+            case SCORE_LOADER_MEDIUM_ID:
+                scoreAdapterMedium.swapCursor(data);
+                break;
+            case SCORE_LOADER_HARD_ID:
+                scoreAdapterHard.swapCursor(data);
+                break;
+        }
+    }
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        switch (loader.getId())
+        {
+            case SCORE_LOADER_EASY_ID:
+                scoreAdapterEasy.swapCursor(null);
+                break;
+            case SCORE_LOADER_MEDIUM_ID:
+                scoreAdapterMedium.swapCursor(null);
+                break;
+            case SCORE_LOADER_HARD_ID:
+                scoreAdapterHard.swapCursor(null);
+                break;
+        }
     }
 }
